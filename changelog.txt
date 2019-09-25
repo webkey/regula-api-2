@@ -1,0 +1,225 @@
+common.js
+======================
+
+1)
+------------
+
+До
+/**
+ * !Check settings
+ */
+function checkSettings() {
+  var $set = $('.settings-js');
+  $(':checkbox', $set).on('change', function () {
+    checkParam.call(this);
+  });
+
+  function checkParam() {
+    var $ch = $(this);
+    var $container = $ch.closest($set);
+    var $chAll = $container.find(':checkbox').not('.all-param-js');
+    if ($ch.hasClass('all-param-js')) {
+      $chAll.not(':disabled').filter(':checked').prop('checked', false);
+      return;
+    }
+    $container.find('.all-param-js').not(':disabled').prop('checked', false);
+  }
+  checkParam.call($('.all-param-js:checked'));
+}
+
+После
+/**
+ * !Check settings
+ */
+function checkSettings() {
+  var $set = $('.settings-js');
+  $(':checkbox', $set).on('change', function () {
+    var $curCheck = $(this);
+    var $check = $set.find(':checkbox').filter('[name=' + $curCheck.attr('name') + ']');
+    checkParam.call($check);
+  });
+
+  function checkParam() {
+    var $ch = $(this);
+    $ch.not(':disabled').trigger('click');
+    var $container = $ch.closest($set);
+    var $chAll = $container.find(':checkbox').not('.all-param-js');
+    if ($ch.hasClass('all-param-js')) {
+      $chAll.not(':disabled').filter(':checked').prop('checked', false);
+    } else {
+      $container.find('.all-param-js').not(':disabled').prop('checked', false);
+    }
+  }
+  checkParam.call($('.all-param-js:checked'));
+}
+
+
+2)
+---------------
+Удалить
+var $openLink = $('.popup-link-open-js');
+  var $popupLink = $('.popup-link-js');
+  var $linkFirstInput = $('input:first', $popupLink);
+  if ($openLink.length) {
+    $openLink.switchClass({
+      switchClassTo: $popupLink,
+      removeEl: $('.popup-def-close-js'),
+      cssScrollFixed: true,
+      removeOutsideClick: true,
+      modifiers: {
+        activeClass: 'is-open'
+      },
+      afterAdd: function () {
+        setTimeout(function () {
+          $linkFirstInput.focus();
+        }, 60);
+      },
+      afterRemove: function () {
+        $html.add($popupLink).addClass('is-animation-hide');
+        setTimeout(function () {
+          $linkFirstInput.blur();
+        }, 60);
+        setTimeout(function () {
+          $html.add($popupLink).removeClass('is-animation-hide');
+        }, 400);
+      }
+    });
+  }
+
+
+3)
+--------------
+
+До
+function acceptRules() {
+  var $html = $('html');
+  var $agreeCheck = $('.agree-check-js');
+  toggleAgree($agreeCheck);
+  $agreeCheck.on('change', function () {
+    var $thisCh = $(this);
+    toggleAgree($thisCh);
+  });
+
+  function toggleAgree(el) {
+    if (el.prop('checked')) {
+      saveAgree(true);
+    } else {
+      localStorage.removeItem('rules');
+    }
+  }
+  var $rulesPopupOpen = $('.popup-rules-open-js'),
+    $rulesPopup = $('.popup-rules-js'),
+    $curOpen;
+  if ($rulesPopupOpen.length) {
+    $rulesPopupOpen.on('click', function (e) {
+      if (!saveAgree()) {
+        e.stopPropagation();
+        e.preventDefault();
+        $curOpen = $(this);
+        $rulesPopup.addClass('is-open');
+        $html.addClass('css-scroll-fixed');
+      }
+    });
+    $html.keyup(function (e) {
+      if ($rulesPopup.hasClass('is-open') && e.keyCode === 27) {
+        closeRulesPopup();
+      }
+    });
+    $html.on('click', function (e) {
+      if ($(e.target).closest('.popup-rules__content').length) {
+        return;
+      }
+      if ($rulesPopup.hasClass('is-open')) {
+        closeRulesPopup();
+      }
+    });
+  }
+  var $rulesPopupClose = $('.popup-rules-close-js');
+  if ($rulesPopupClose.length) {
+    $rulesPopupClose.on('click', function (e) {
+      closeRulesPopup();
+      e.preventDefault();
+    });
+  }
+  var $rulesPopupAgree = $('.js-popup-rules-agree');
+  if ($rulesPopupAgree.length) {
+    $rulesPopupAgree.on('click', function (e) {
+      saveAgree(true);
+      $agreeCheck.prop('checked', true);
+      closeRulesPopup();
+      e.preventDefault();
+      setTimeout(function () {
+        if ($curOpen.has(':file').length) {
+          $curOpen.find(':file').trigger('click');
+        } else {
+          $curOpen.trigger('click');
+        }
+      }, 100)
+    });
+  }
+
+  function closeRulesPopup() {
+    $rulesPopup.removeClass('is-open');
+    $html.removeClass('css-scroll-fixed');
+  }
+}
+
+После
+function acceptRules() {
+  var $html = $('html');
+  var $rulesPopupOpen = $('.popup-rules-open-js'),
+    $rulesPopup = $('.popup-rules-js'),
+    $curOpen;
+  if ($rulesPopupOpen.length) {
+    $rulesPopupOpen.on('click', function (e) {
+      if (!saveAgree()) {
+        e.stopPropagation();
+        e.preventDefault();
+        $curOpen = $(this);
+        $rulesPopup.addClass('is-open');
+        $html.addClass('css-scroll-fixed');
+      }
+    });
+    $html.keyup(function (e) {
+      if ($rulesPopup.hasClass('is-open') && e.keyCode === 27) {
+        closeRulesPopup();
+      }
+    });
+    $rulesPopup.on('click', function (e) {
+      if ($(e.target).closest('[data-swc-prevent-remove]').length) {
+        return;
+      }
+      if ($rulesPopup.hasClass('is-open')) {
+        closeRulesPopup();
+      }
+    });
+  }
+  var $rulesPopupClose = $('.popup-rules-close-js');
+  if ($rulesPopupClose.length) {
+    $rulesPopupClose.on('click', function (e) {
+      closeRulesPopup();
+      e.preventDefault();
+    });
+  }
+  var $rulesPopupAgree = $('.js-popup-rules-agree');
+  if ($rulesPopupAgree.length) {
+    $rulesPopupAgree.on('click', function (e) {
+      saveAgree(true);
+      closeRulesPopup();
+      e.preventDefault();
+      setTimeout(function () {
+        if ($curOpen.has(':file').length) {
+          $curOpen.find(':file').trigger('click');
+        } else {
+          $curOpen.trigger('click');
+        }
+      }, 100)
+    });
+  }
+
+  function closeRulesPopup() {
+    $rulesPopup.removeClass('is-open');
+    $html.removeClass('css-scroll-fixed');
+  }
+}
+

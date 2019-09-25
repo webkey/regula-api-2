@@ -1,0 +1,13 @@
+@@if(context.label){<label for="@@id"@@if(context.labelClass){ class="@@labelClass"}>@@label</label>}
+<input
+    @@if(context.inputClass){class="@@inputClass"}
+    @@if(!context.inputClass){class="form-def"}
+    id="@@id"
+    name="@@id"
+    @@if(context.type){type="@@type"}
+    @@if(!context.type){type="text"}
+    @@if(context.placeholder){placeholder="@@placeholder"}
+    @@if(context.value){value="@@value"}
+    @@if(context.disabled){disabled}
+    required
+/>

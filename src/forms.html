@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<!--[if lte IE 9]><html class="no-js old-ie" lang="ru"><![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="ru">
+<!--<![endif]-->
+
+<head>
+  <meta charset="UTF-8">
+  <title>Forms</title>
+  <!--Mobile optimized-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+  <!--Theme color-->
+  <meta name="theme-color" content="#1f2343">
+  <!--SEO-->
+  <meta name="description" content="описание">
+  <meta name="keywords" content="ключевые слова">
+  <meta name="yandex-verification" content="XXXXXXXXXXXXXX">
+  <meta name="google-site-verification" content="XXXXXXXXXXXXXX">
+  <!--The Open Graph protocol-->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="http://localhost:3000/index.html">
+  <meta property="og:title" content="Название">
+  <meta property="og:image" content="http://localhost:3000/share.jpg">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:description" content="Описание">
+  <meta property="og:site_name" content="Расширенное название">
+  <!--Favicon-->
+  <link rel="shortcut icon" href="favicon.ico?rev=@@hash">
+  <link rel="icon" sizes="16x16 32x32 64x64" href="favicon.ico?rev=@@hash">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?rev=@@hash">
+  <!--manifest-->
+  <link rel="manifest" href="manifest.webmanifest">
+  <!--Style-->
+  <link rel="stylesheet" href="css/libs.min.css?rev=@@hash">
+  <link rel="stylesheet" href="css/main.css?rev=@@hash">
+  <!--Modernizr-->
+  <script src="js/modernizr.min.js"></script>
+</head>
+
+<body>
+  <noscript><div class="no-js-warning">Для корректной работы сайта <b>включите JavaScript</b> в браузере</div></noscript>
+  <!--[if lte IE 9]>
+<div class="browserupgrade"><p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p></div> <![endif]-->
+  <!--HEADER-->
+  <header class="header">
+    <div class="layout-page layout-page-spaces">
+      <div class="header-container">
+        <a href="#" class="back back-js">
+        <svg width="14" height="22" viewBox="0 0 14 22" xmlns="http://www.w3.org/2000/svg"><path d="M13.206 3.60308L5.85075 11.0636L13.3731 18.4393C14.209 19.2023 14.209 20.5588 13.3731 21.4065C12.9552 21.8304 12.4537 22 11.8687 22C11.2836 22 10.7821 21.8304 10.3642 21.4065L3.00895 13.946L0 10.9788L2.92537 8.09634L10.2806 0.635838C11.0328 -0.211946 12.3701 -0.211946 13.206 0.635838C14.0418 1.39884 14.0418 2.7553 13.206 3.60308Z"/></svg>
+
+      </a>
+        <div class="logo">
+          <a class="back-js" href="index.html">Regula</a>
+        </div>
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="current"><a href="#">Interactive documentation</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Regula website</a></li>
+          </ul>
+        </nav>
+        <div class="header-group">
+          <a href="#" class="btn-contact popup-contacts-open-js">Contact sales</a>
+          <a href="#" class="nav-open nav-open-js">
+          <svg width="29" height="22" viewBox="0 0 29 22" xmlns="http://www.w3.org/2000/svg"><path d="M2 18C0.89543 18 0 18.8954 0 20C0 21.1046 0.89543 22 2 22V18ZM18.5 22C19.6046 22 20.5 21.1046 20.5 20C20.5 18.8954 19.6046 18 18.5 18V22ZM2 9C0.89543 9 0 9.89543 0 11C0 12.1046 0.89543 13 2 13V9ZM22.625 13C23.7296 13 24.625 12.1046 24.625 11C24.625 9.89543 23.7296 9 22.625 9V13ZM2 0C0.89543 0 0 0.89543 0 2C0 3.10457 0.89543 4 2 4V0ZM26.75 4C27.8546 4 28.75 3.10457 28.75 2C28.75 0.89543 27.8546 0 26.75 0V4ZM2 22H18.5V18H2V22ZM2 13H22.625V9H2V13ZM2 4H26.75V0H2V4Z"></path></svg>
+
+        </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!--HEADER end-->
+  <main class="main" role="main">
+    <div class="layout-text layout-page-spaces">
+      <h1>Forms</h1>
+      <!--=== INCLUDE ===-->
+      <h2>Templates @@include</h2>
+      <h3>Input</h3>
+      <pre>
+include("_tpl_forms_input.html", {
+  "label": "Label",
+  "id": "id",
+  "placeholder": "Some placeholder",
+  "type": "text",
+  "value": "Has value",
+  "disabled": "false"
+})</pre>
+      <pre>&lt;label for="id"&gt;Label: &lt;mark&gt;*&lt;/mark&gt;&lt;/label&gt;
+&lt;input class="form-def" id="id" name="id" type="text" placeholder="Some placeholder" required /&gt;</pre>
+      <br>
+      <h3>Textarea</h3>
+      <pre>
+include("_tpl_forms_textarea.html", {
+  "label": "Label",
+  "id": "id",
+  "placeholder": "Some placeholder",
+  "value": "Has value",
+  "disabled": "false"
+})</pre>
+      <pre>&lt;label for="id"&gt;Label: &lt;mark&gt;*&lt;/mark&gt;&lt;/label&gt;
+&lt;textarea class="form-def" id="id" name="id" placeholder="Some placeholder" required&gt;&lt;/textarea&gt;</pre>
+      <br>
+      <h3>Error and Success feedback</h3>
+      <pre>include("_tpl_forms_valid.html", {
+  "error": "Error feedback",
+  "success": "Success feedback"
+})</pre>
+      <pre>&lt;span class="error-feedback"&gt;Error feedback&lt;/span&gt;
+&lt;span class="success-feedback"&gt;Success feedback&lt;/span&gt;</pre>
+      <br>
+      <p>Если нужно проверить отображение с js классами, добавить в шаблонах класс <strong><code>field-js</code></strong>, например <strong><code>class="form-def field-js"</code></strong><br> Для проверки отображения валидации, нажать кнопку <strong><code>VALIDATE</code></strong></p>
+      <hr>
+      <!--=== DEFAULT INPUT ===-->
+      <h2>Input</h2>
+      <form action="#" class="form-validate-js">
+        <!--=== Default ===-->
+        <label for="inputDefault">Default:</label>
+        <input class="form-def" id="inputDefault" name="inputDefault" type="text" required />
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== Disabled ===-->
+        <label for="inputDisabled">Disabled:</label>
+        <input class="form-def" id="inputDisabled" name="inputDisabled" type="text" disabled required />
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== Value ===-->
+        <label for="inputValue">Has value:</label>
+        <input class="form-def" id="inputValue" name="inputValue" type="text" value="Has value" required />
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== Value and Disabled ===-->
+        <label for="inputValueDisabled">Has value and disabled:</label>
+        <input class="form-def" id="inputValueDisabled" name="inputValueDisabled" type="text" value="Has value" disabled required />
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== === ===--><br>
+        <button class="btn-def">VALIDATE</button>
+      </form>
+      <br><br>
+      <!--=== DEFAULT TEXTAREA ===-->
+      <h2>Textarea</h2>
+      <form action="#" class="form-validate-js">
+        <!--=== Default ===-->
+        <label for="textareaDefault">Default:</label>
+        <textarea class="form-def" id="textareaDefault" name="textareaDefault" required></textarea>
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== Disabled ===-->
+        <label for="textareaDisabled">Disabled:</label>
+        <textarea class="form-def" id="textareaDisabled" name="textareaDisabled" disabled required></textarea>
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== Value ===-->
+        <label for="textareaValue">Has value:</label>
+        <textarea class="form-def" id="textareaValue" name="textareaValue" required>Has value</textarea>
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== Value and Disabled ===-->
+        <label for="textareaValueDisabled">Has value and disabled:</label>
+        <textarea class="form-def" id="textareaValueDisabled" name="textareaValueDisabled" disabled required>Has value</textarea>
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== === ===--><br>
+        <button class="btn-def">VALIDATE</button>
+      </form>
+      <br><br>
+      <hr>
+      <!--=== CHECKBOXES & RADIO BUTTONS ===-->
+      <h2>Checkboxes and Radio buttons</h2>
+      <p>Чекбоксы и кнопки «radio»</p>
+      <!--=== CHECKBOXES ===-->
+      <h3>Checkboxes</h3>
+      <form action="#" class="form-validate-js">
+        <!--=== Long label ===-->
+        <label class="form-radiocheck">
+        <input type="checkbox" name="checkbox" />
+        <span>Отличный способ для выделения самого важного в тексте – использование контрастных шрифтов</span>
+      </label>
+        <br>
+        <!--=== Checked ===-->
+        <label class="form-radiocheck">
+        <input type="checkbox" name="checkbox" checked />
+        <span>Checked</span>
+      </label>
+        <br>
+        <!--=== Disabled ===-->
+        <label class="form-radiocheck">
+        <input type="checkbox" name="checkbox" disabled />
+        <span>Disabled</span>
+      </label>
+        <br>
+        <!--=== Checked and disabled ===-->
+        <label class="form-radiocheck">
+        <input type="checkbox" name="checkbox" checked disabled />
+        <span>Checked & Disabled</span>
+      </label>
+        <br>
+        <br>
+        <!--=== RADIO BUTTONS ===-->
+        <h3>Radio</h3>
+        <label class="form-radiocheck">
+        <input type="radio" name="testRadioInside" />
+        <span>Male</span>
+      </label>
+        <br>
+        <label class="form-radiocheck">
+        <input type="radio" name="testRadioInside" checked />
+        <span>Female</span>
+      </label>
+        <br>
+        <label class="form-radiocheck">
+        <input type="radio" name="testRadioInsideDisabled" disabled />
+        <span>Disabled</span>
+      </label>
+        <br>
+        <label class="form-radiocheck">
+        <input type="radio" name="testRadioInsideCheckedDisabled" checked disabled />
+        <span>Checked & Disabled</span>
+      </label>
+      </form>
+      <br><br>
+      <hr>
+      <!--=== SELECT ===-->
+      <h2>Select</h2>
+      <p>Поля выбора</p>
+      <!--=== DEFAULT SELECT ===-->
+      <h3>Default select</h3>
+      <pre>include("_tpl_forms_select.html", {
+  "label": "Label:",
+  "id": "id",
+  "disabled": "",
+  "selected": "" // В значении указать value нужного опшина
+})</pre>
+      <pre>&lt;label for="id"&gt;Label: &lt;mark&gt;*&lt;/mark&gt;&lt;/label&gt;
+&lt;select class="form-def" id="id" name="id" required&gt;
+  &lt;!--Important! The first element must have a value of ""--&gt;
+  {{options}}
+&lt;/select&gt;</pre>
+      <form action="#" class="form-validate-js">
+        <!--=== Default ===-->
+        <label for="selectDefault">Default: <mark>*</mark></label>
+        <select class="form-def field-js" id="selectDefault" name="selectDefault" required>
+  <!--Important! The first element must have a value of ""-->
+  <option value="">- Choose option -</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3 we have to add a lot of text for testing to make sure the correctness of cutting this text</option>
+  <option value="4">Option 4</option>
+  <option value="5">Option 5</option>
+  <option value="6">Option 6</option>
+  <option value="7">Option 7</option>
+  <option value="8">Option 8</option>
+</select>
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== Disabled ===-->
+        <label for="selectDisabled">Disabled: <mark>*</mark></label>
+        <select class="form-def field-js" id="selectDisabled" name="selectDisabled" disabled required>
+  <!--Important! The first element must have a value of ""-->
+  <option value="">- Choose option -</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3 we have to add a lot of text for testing to make sure the correctness of cutting this text</option>
+  <option value="4">Option 4</option>
+  <option value="5">Option 5</option>
+  <option value="6">Option 6</option>
+  <option value="7">Option 7</option>
+  <option value="8">Option 8</option>
+</select>
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== Selected ===-->
+        <label for="selectSelected">Selected: <mark>*</mark></label>
+        <select class="form-def field-js" id="selectSelected" name="selectSelected" required>
+  <!--Important! The first element must have a value of ""-->
+  <option value="">- Choose option -</option>
+  <option value="1" selected>Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3 we have to add a lot of text for testing to make sure the correctness of cutting this text</option>
+  <option value="4">Option 4</option>
+  <option value="5">Option 5</option>
+  <option value="6">Option 6</option>
+  <option value="7">Option 7</option>
+  <option value="8">Option 8</option>
+</select>
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== Selected and Disabled ===-->
+        <label for="selectSelectedDisabled">Selected and Disabled: <mark>*</mark></label>
+        <select class="form-def field-js" id="selectSelectedDisabled" name="selectSelectedDisabled" disabled required>
+  <!--Important! The first element must have a value of ""-->
+  <option value="">- Choose option -</option>
+  <option value="1" selected>Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3 we have to add a lot of text for testing to make sure the correctness of cutting this text</option>
+  <option value="4">Option 4</option>
+  <option value="5">Option 5</option>
+  <option value="6">Option 6</option>
+  <option value="7">Option 7</option>
+  <option value="8">Option 8</option>
+</select>
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== === ===--><br>
+        <button class="btn-def">VALIDATE</button>
+      </form>
+      <br><br>
+      <!--=== DEFAULT SELECT WITH CUSTOM ARROW ===-->
+      <h3>Default select with custom arrow</h3>
+      <pre>include("_tpl_forms_select.html", {
+  "label": "Label:",
+  "id": "id",
+  "disabled": "",
+  "selected": "", // В значении указать value нужного опшина
+  "arrow": "true"
+})</pre>
+      <pre>&lt;label for="id"&gt;Label: &lt;mark&gt;*&lt;/mark&gt;&lt;/label&gt;
+&lt;select class="form-def has-arrow" id="id" name="id" required&gt;
+  &lt;!--Important! The first element must have a value of ""--&gt;
+  {{options}}
+&lt;/select&gt;
+&lt;div class="select-arrow"&gt;@include("includes/svg/icon-angle.svg")&lt;/div&gt;</pre>
+      <form action="#" class="form-validate-js">
+        <!--=== Default ===-->
+        <label for="selectArrowDefault">Default: <mark>*</mark></label>
+        <select class="form-def has-arrow field-js" id="selectArrowDefault" name="selectArrowDefault" required>
+  <!--Important! The first element must have a value of ""-->
+  <option value="">- Choose option -</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3 we have to add a lot of text for testing to make sure the correctness of cutting this text</option>
+  <option value="4">Option 4</option>
+  <option value="5">Option 5</option>
+  <option value="6">Option 6</option>
+  <option value="7">Option 7</option>
+  <option value="8">Option 8</option>
+</select>
+        <div class="select-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"></path></svg></div>
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== Disabled ===-->
+        <label for="selectArrowDisabled">Disabled: <mark>*</mark></label>
+        <select class="form-def has-arrow field-js" id="selectArrowDisabled" name="selectArrowDisabled" disabled required>
+  <!--Important! The first element must have a value of ""-->
+  <option value="">- Choose option -</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3 we have to add a lot of text for testing to make sure the correctness of cutting this text</option>
+  <option value="4">Option 4</option>
+  <option value="5">Option 5</option>
+  <option value="6">Option 6</option>
+  <option value="7">Option 7</option>
+  <option value="8">Option 8</option>
+</select>
+        <div class="select-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"></path></svg></div>
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== Selected ===-->
+        <label for="selectArrowSelected">Selected: <mark>*</mark></label>
+        <select class="form-def has-arrow field-js" id="selectArrowSelected" name="selectArrowSelected" required>
+  <!--Important! The first element must have a value of ""-->
+  <option value="">- Choose option -</option>
+  <option value="1" selected>Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3 we have to add a lot of text for testing to make sure the correctness of cutting this text</option>
+  <option value="4">Option 4</option>
+  <option value="5">Option 5</option>
+  <option value="6">Option 6</option>
+  <option value="7">Option 7</option>
+  <option value="8">Option 8</option>
+</select>
+        <div class="select-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"></path></svg></div>
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== Selected and Disabled ===-->
+        <label for="selectArrowSelectedDisabled">Selected and Disabled: <mark>*</mark></label>
+        <select class="form-def has-arrow field-js" id="selectArrowSelectedDisabled" name="selectArrowSelectedDisabled" disabled required>
+  <!--Important! The first element must have a value of ""-->
+  <option value="">- Choose option -</option>
+  <option value="1" selected>Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3 we have to add a lot of text for testing to make sure the correctness of cutting this text</option>
+  <option value="4">Option 4</option>
+  <option value="5">Option 5</option>
+  <option value="6">Option 6</option>
+  <option value="7">Option 7</option>
+  <option value="8">Option 8</option>
+</select>
+        <div class="select-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"></path></svg></div>
+        <span class="error-feedback">Error feedback</span>
+        <span class="success-feedback">Success feedback</span>
+        <!--=== === ===--><br>
+        <button class="btn-def">VALIDATE</button>
+      </form>
+      <br><br>
+      <hr>
+      <!--=== FORM UNIT ===-->
+      <h2>Form unit</h2>
+      <p>Котейнер объединяющий элементы относящиеся к одному <strong>полю ввода</strong>, <strong>селекту</strong>, или <strong>переключателю</strong>.<br> Используется для более правильного расположения элементов форм относительно друг друга.</p>
+      <pre>&lt;div class="form-unit"&gt;
+  {{input}} / {{select}} / {{radiocheck}}
+&lt;/div&gt;</pre>
+      <form action="#" class="form-validate-js">
+        <div class="form-unit">
+          <label for="unitInputDefault">Input:</label>
+          <input class="form-def" id="unitInputDefault" name="unitInputDefault" type="text" required />
+          <span class="error-feedback">Error feedback</span>
+          <span class="success-feedback">Success feedback</span>
+        </div>
+        <div class="form-unit">
+          <label for="unitSelectDefault">Default select: <mark>*</mark></label>
+          <select class="form-def field-js" id="unitSelectDefault" name="unitSelectDefault" required>
+  <!--Important! The first element must have a value of ""-->
+  <option value="">- Choose option -</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3 we have to add a lot of text for testing to make sure the correctness of cutting this text</option>
+  <option value="4">Option 4</option>
+  <option value="5">Option 5</option>
+  <option value="6">Option 6</option>
+  <option value="7">Option 7</option>
+  <option value="8">Option 8</option>
+</select>
+          <span class="error-feedback">Error feedback</span>
+          <span class="success-feedback">Success feedback</span>
+        </div>
+        <div class="form-unit">
+          <label for="unitSelectArrowDefault">Default select with custom arrow: <mark>*</mark></label>
+          <select class="form-def has-arrow field-js" id="unitSelectArrowDefault" name="unitSelectArrowDefault" required>
+  <!--Important! The first element must have a value of ""-->
+  <option value="">- Choose option -</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3 we have to add a lot of text for testing to make sure the correctness of cutting this text</option>
+  <option value="4">Option 4</option>
+  <option value="5">Option 5</option>
+  <option value="6">Option 6</option>
+  <option value="7">Option 7</option>
+  <option value="8">Option 8</option>
+</select>
+          <div class="select-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z"></path></svg></div>
+          <span class="error-feedback">Error feedback</span>
+          <span class="success-feedback">Success feedback</span>
+        </div>
+        <!--=== === ===--><br>
+        <button class="btn-def">VALIDATE</button>
+      </form>
+      <br><br>
+      <hr>
+      <!--=== FORM GROUP ===-->
+      <h2>Group</h2>
+      <pre>&lt;div class="form-group"&gt;
+  &lt;div class="form-group__item"&gt;
+    {{input}}
+  &lt;/div&gt;
+  &lt;div class="form-group__item"&gt;
+    {{input}}
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="form-group"&gt;
+  &lt;div class="form-group__item"&gt;
+    {{input}}
+  &lt;/div&gt;
+  &lt;div class="form-group__item"&gt;
+    {{input}}
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+      <br>
+      <form action="#" class="form-validate-js">
+        <div class="form-group">
+          <div class="form-group__item">
+            <label for="inputGroupFirst">First:</label>
+            <input class="form-def" id="inputGroupFirst" name="inputGroupFirst" type="text" required />
+            <span class="error-feedback">Error feedback</span>
+            <span class="success-feedback">Success feedback</span>
+          </div>
+          <div class="form-group__item">
+            <label for="inputGroupTwo">Two:</label>
+            <input class="form-def" id="inputGroupTwo" name="inputGroupTwo" type="text" required />
+            <span class="error-feedback">Error feedback</span>
+            <span class="success-feedback">Success feedback</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-group__item">
+            <label for="inputGroupThree">Three:</label>
+            <input class="form-def" id="inputGroupThree" name="inputGroupThree" type="text" required />
+            <span class="error-feedback">Error feedback</span>
+            <span class="success-feedback">Success feedback</span>
+          </div>
+          <div class="form-group__item">
+            <label for="inputGroupFour">Four:</label>
+            <input class="form-def" id="inputGroupFour" name="inputGroupFour" type="text" required />
+            <span class="error-feedback">Error feedback</span>
+            <span class="success-feedback">Success feedback</span>
+          </div>
+        </div>
+        <!--=== === ===--><br>
+        <button class="btn-def">VALIDATE</button>
+      </form>
+      <br><br>
+      <br><br>
+    </div>
+  </main>
+  <!--FOOTER-->
+  <footer class="footer">
+    <div class="layout-page layout-page-spaces">
+      <div class="copyright">&copy; 1992-2019 Regula. All rights reserved.</div>
+    </div>
+  </footer>
+  <!--FOOTER end-->
+  <div class="popup-nav popup-nav-js" data-swc-prevent-remove>
+    <div class="popup-nav__frame">
+      <div class="popup-nav__top layout-page-spaces">
+        <div class="nav-alt">
+          <ul class="nav-alt__list">
+            <li><a href="#">Interactive documentation</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Regula website</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="popup-nav__bottom layout-page-spaces">
+        <div class="c-form">
+          <div class="c-form__title">Our team will be happy to help with your enquiries</div>
+          <form action="#" method="post" class="c-form__form form-validate-js">
+            <div class="c-form__fields">
+              <div class="form-unit">
+                <label for="ncfName" class="label_alt">What is your name?</label>
+                <input class="form-def_alt" id="ncfName" name="ncfName" type="text" required />
+                <span class="error-feedback">Error feedback</span>
+                <span class="success-feedback">Success feedback</span>
+              </div>
+              <div class="form-unit">
+                <label for="ncfEmail" class="label_alt">What is your e-mail address?</label>
+                <input class="form-def_alt" id="ncfEmail" name="ncfEmail" type="email" required />
+                <span class="error-feedback">Error feedback</span>
+                <span class="success-feedback">Success feedback</span>
+              </div>
+              <div class="form-unit c-form__message">
+                <label for="ncfMessage" class="label_alt">Please specify your scenarios, applications, and technical requirements</label>
+                <textarea class="form-def_alt" id="ncfMessage" name="ncfMessage" required></textarea>
+                <span class="error-feedback">Error feedback</span>
+                <span class="success-feedback">Success feedback</span>
+              </div>
+            </div>
+            <div class="c-form__footer">
+              <button class="btn-def c-form__submit">SUBMIT</button>
+            </div>
+            <div class="form-alert">
+              <div class="form-alert__text">Ура!!! Запрос ушёл по адресу!!!</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <a href="#" class="popup-nav-close popup-nav-close-js" title="Close popup">
+    <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M10.0684 8.07678L15.4221 2.67179C16.0304 2.05758 16.0304 1.07486 15.4221 0.522073C14.8137 -0.0921305 13.8403 -0.0921305 13.2928 0.522073L7.93916 5.92706L2.58555 0.460653C1.97719 -0.153551 1.0038 -0.153551 0.456274 0.460653C-0.152091 1.07486 -0.152091 2.05758 0.456274 2.61036L5.80989 8.01536L0.456274 13.4203C-0.152091 14.0345 -0.152091 15.0173 0.456274 15.5701C0.760456 15.8772 1.12548 16 1.55133 16C1.97719 16 2.34221 15.8772 2.64639 15.5701L8 10.1651L13.3536 15.5701C13.6578 15.8772 14.0228 16 14.4487 16C14.8745 16 15.2395 15.8772 15.5437 15.5701C16.1521 14.9559 16.1521 13.9731 15.5437 13.4203L10.0684 8.07678Z"></path></svg>
+  </a>
+  </div>
+  <div class="popup-def-overlay popup-nav-overlay-js"></div>
+  <div class="popup-def popup-contacts-js">
+    <div class="popup-def__frame">
+      <div class="popup-def__holder">
+        <div class="popup-def__content layout-page-spaces" data-swc-prevent-remove>
+          <div class="popup-def__align">
+            <div class="c-form">
+              <div class="c-form__title">Our team will be happy to help with your enquiries</div>
+              <form action="#" method="post" class="c-form__form form-validate-js">
+                <div class="c-form__fields">
+                  <div class="form-unit">
+                    <label for="cfName">What is your name?</label>
+                    <input class="form-def" id="cfName" name="cfName" type="text" required />
+                    <span class="error-feedback">Error feedback</span>
+                    <span class="success-feedback">Success feedback</span>
+                  </div>
+                  <div class="form-unit">
+                    <label for="cfEmail">What is your e-mail address?</label>
+                    <input class="form-def" id="cfEmail" name="cfEmail" type="email" required />
+                    <span class="error-feedback">Error feedback</span>
+                    <span class="success-feedback">Success feedback</span>
+                  </div>
+                  <div class="form-unit c-form__message">
+                    <label for="cfMessage">Please specify your scenarios, applications, and technical requirements</label>
+                    <textarea class="form-def" id="cfMessage" name="cfMessage" required></textarea>
+                    <span class="error-feedback">Error feedback</span>
+                    <span class="success-feedback">Success feedback</span>
+                  </div>
+                </div>
+                <div class="c-form__footer">
+                  <button class="btn-def c-form__submit">SUBMIT</button>
+                </div>
+                <div class="form-alert">
+                  <div class="form-alert__text">Ура!!! Запрос ушёл по адресу!!!</div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <a href="#" class="popup-def-close popup-def-close-js" title="Close popup">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M10.0684 8.07678L15.4221 2.67179C16.0304 2.05758 16.0304 1.07486 15.4221 0.522073C14.8137 -0.0921305 13.8403 -0.0921305 13.2928 0.522073L7.93916 5.92706L2.58555 0.460653C1.97719 -0.153551 1.0038 -0.153551 0.456274 0.460653C-0.152091 1.07486 -0.152091 2.05758 0.456274 2.61036L5.80989 8.01536L0.456274 13.4203C-0.152091 14.0345 -0.152091 15.0173 0.456274 15.5701C0.760456 15.8772 1.12548 16 1.55133 16C1.97719 16 2.34221 15.8772 2.64639 15.5701L8 10.1651L13.3536 15.5701C13.6578 15.8772 14.0228 16 14.4487 16C14.8745 16 15.2395 15.8772 15.5437 15.5701C16.1521 14.9559 16.1521 13.9731 15.5437 13.4203L10.0684 8.07678Z"></path></svg>
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="popup-def popup-dist-js">
+    <div class="popup-def__frame">
+      <div class="popup-def__holder">
+        <div class="popup-def__content layout-page-spaces" data-swc-prevent-remove>
+          <div class="popup-def__align">
+            <div class="popup-def__title">230 countries and territories</div>
+            <div class="support">
+              <div class="support__item">
+                <strong>EU</strong>
+                <p>Passports of all participating countries, visas, driver's license, medical insurance, insurance</p>
+              </div>
+              <div class="support__item">
+                <strong>Andorra</strong>
+                <p>Passport, driver's license, medical insurance</p>
+              </div>
+              <div class="support__item">
+                <strong>Belarus</strong>
+                <p>Passport, driver's license, medical insurance</p>
+              </div>
+              <div class="support__item">
+                <strong>Switherland</strong>
+                <p>Passport, driver's license, medical insurance</p>
+              </div>
+              <div class="support__item">
+                <strong>Georgia</strong>
+                <p>Passport, driver's license, medical insurance</p>
+              </div>
+              <div class="support__item">
+                <strong>Belarus</strong>
+                <p>Passport, driver's license, medical insurance</p>
+              </div>
+              <div class="support__item">
+                <strong>Switherland</strong>
+                <p>Passport, driver's license, medical insurance</p>
+              </div>
+              <div class="support__item">
+                <strong>USA</strong>
+                <p>Passports of all participating countries, visas, driver's license, medical insurance, insurance</p>
+              </div>
+              <div class="support__item">
+                <strong>Andorra</strong>
+                <p>Passport, driver's license, medical insurance</p>
+              </div>
+              <div class="support__item">
+                <strong>Belarus</strong>
+                <p>Passport, driver's license, medical insurance</p>
+              </div>
+              <div class="support__item">
+                <strong>Switherland</strong>
+                <p>Passport, driver's license, medical insurance</p>
+              </div>
+              <div class="support__item">
+                <strong>Georgia</strong>
+                <p>Passport, driver's license, medical insurance</p>
+              </div>
+              <div class="support__item">
+                <strong>Belarus</strong>
+                <p>Passport, driver's license, medical insurance</p>
+              </div>
+              <div class="support__item">
+                <strong>Switherland</strong>
+                <p>Passport, driver's license, medical insurance</p>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="popup-def-close popup-def-close-js" title="Close popup">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M10.0684 8.07678L15.4221 2.67179C16.0304 2.05758 16.0304 1.07486 15.4221 0.522073C14.8137 -0.0921305 13.8403 -0.0921305 13.2928 0.522073L7.93916 5.92706L2.58555 0.460653C1.97719 -0.153551 1.0038 -0.153551 0.456274 0.460653C-0.152091 1.07486 -0.152091 2.05758 0.456274 2.61036L5.80989 8.01536L0.456274 13.4203C-0.152091 14.0345 -0.152091 15.0173 0.456274 15.5701C0.760456 15.8772 1.12548 16 1.55133 16C1.97719 16 2.34221 15.8772 2.64639 15.5701L8 10.1651L13.3536 15.5701C13.6578 15.8772 14.0228 16 14.4487 16C14.8745 16 15.2395 15.8772 15.5437 15.5701C16.1521 14.9559 16.1521 13.9731 15.5437 13.4203L10.0684 8.07678Z"></path></svg>
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--<div class="popup-def popup-link-js">
+  <div class="popup-def__frame">
+    <div class="popup-def__holder">
+      <div class="popup-def__content layout-page-spaces" data-swc-prevent-remove>
+        <div class="popup-def__align">
+          <div class="c-form">
+            <div class="c-form__title">Use the link search to add your document.</div>
+            <form action="#" method="post" class="c-form__form form-validate-js">
+              <div class="c-form__fields">
+                <div class="form-unit">
+                  <label for="cfLink">Enter your link</label>
+<input
+    
+    class="form-def"
+    id="cfLink"
+    name="cfLink"
+    type="text"
+    
+    
+    
+    
+    required
+/>
+                  <span class="error-feedback">Error feedback</span>
+
+<span class="success-feedback">Success feedback</span>
+
+                </div>
+              </div>
+              <div class="c-form__footer">
+                <button class="btn-def c-form__submit">SEARCH</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <a href="#" class="popup-def-close popup-def-close-js" title="Close popup">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M10.0684 8.07678L15.4221 2.67179C16.0304 2.05758 16.0304 1.07486 15.4221 0.522073C14.8137 -0.0921305 13.8403 -0.0921305 13.2928 0.522073L7.93916 5.92706L2.58555 0.460653C1.97719 -0.153551 1.0038 -0.153551 0.456274 0.460653C-0.152091 1.07486 -0.152091 2.05758 0.456274 2.61036L5.80989 8.01536L0.456274 13.4203C-0.152091 14.0345 -0.152091 15.0173 0.456274 15.5701C0.760456 15.8772 1.12548 16 1.55133 16C1.97719 16 2.34221 15.8772 2.64639 15.5701L8 10.1651L13.3536 15.5701C13.6578 15.8772 14.0228 16 14.4487 16C14.8745 16 15.2395 15.8772 15.5437 15.5701C16.1521 14.9559 16.1521 13.9731 15.5437 13.4203L10.0684 8.07678Z"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>-->
+  <div class="popup-def popup-rules-js" id="popup-rules">
+    <div class="popup-def__frame">
+      <div class="popup-def__holder">
+        <div class="popup-def__content layout-page-spaces" data-swc-prevent-remove>
+          <div class="popup-def__align_narrow">
+            <div class="popup-rules__setting settings-js">
+              <h3 class="settings__label">Select parameters</h3>
+              <div class="settings__group">
+                <div class="settings__item settings__item_head">
+                  <label class="form-switcher">
+                  <input type="checkbox" name="all-parameters" class="all-param-js" checked>
+                  <span>All parameters</span>
+                </label>
+                </div>
+                <!--<hr>-->
+                <div class="settings__item">
+                  <label class="form-switcher">
+                  <input type="checkbox" name="do-mrz">
+                  <span>Do MRZ</span>
+                </label>
+                </div>
+                <div class="settings__item">
+                  <label class="form-switcher">
+                  <input type="checkbox" name="do-visual-text">
+                  <span>Do Visual Text</span>
+                </label>
+                </div>
+                <div class="settings__item">
+                  <label class="form-switcher">
+                  <input type="checkbox" name="do-graphic-fields">
+                  <span>Do Graphic Fields</span>
+                </label>
+                </div>
+                <div class="settings__item">
+                  <label class="form-switcher">
+                  <input type="checkbox" name="do-barcodes">
+                  <span>Do Barcodes</span>
+                </label>
+                </div>
+                <div class="settings__item">
+                  <label class="form-switcher">
+                  <input type="checkbox" name="do-compress-images">
+                  <span>Do Compress Images</span>
+                </label>
+                </div>
+              </div>
+            </div>
+            <div class="popup-rules__text">
+              <p>Please accept <a href="#" target="_blank">the rules and conditions</a> for data processing</p>
+            </div>
+            <div class="popup-rules__buttons">
+              <button class="btn-def popup-rules__btn js-popup-rules-agree">I AGREE</button>
+            </div>
+          </div>
+          <a href="#" class="popup-def-close popup-rules-close-js" title="Close popup">
+          <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M10.0684 8.07678L15.4221 2.67179C16.0304 2.05758 16.0304 1.07486 15.4221 0.522073C14.8137 -0.0921305 13.8403 -0.0921305 13.2928 0.522073L7.93916 5.92706L2.58555 0.460653C1.97719 -0.153551 1.0038 -0.153551 0.456274 0.460653C-0.152091 1.07486 -0.152091 2.05758 0.456274 2.61036L5.80989 8.01536L0.456274 13.4203C-0.152091 14.0345 -0.152091 15.0173 0.456274 15.5701C0.760456 15.8772 1.12548 16 1.55133 16C1.97719 16 2.34221 15.8772 2.64639 15.5701L8 10.1651L13.3536 15.5701C13.6578 15.8772 14.0228 16 14.4487 16C14.8745 16 15.2395 15.8772 15.5437 15.5701C16.1521 14.9559 16.1521 13.9731 15.5437 13.4203L10.0684 8.07678Z"></path></svg>
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="preloader">
+    <div class="spin"><span></span></div>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/libs.min.js?rev=@@hash"></script>
+  <script src="js/common.js?rev=@@hash"></script>
+  <script src="js/form-validation.js?rev=@@hash"></script>
+  <!-- For example, test. Remove after programming -->
+  <script src="js/get-results.js?rev=@@hash"></script>
+</body>
+
+</html>

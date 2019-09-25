@@ -1,0 +1,105 @@
+@import "../utils/variables";
+@import "../utils/mixins";
+@import "../../libs/include-media/dist/include-media";
+
+// Выделение текста
+//body {
+//  *::selection {
+//    background-color: $base-color;
+//    color: invert($text-color);
+//  }
+//}
+
+// Заголовки
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin: 0 0 $bottom-space;
+  padding: 0;
+  @include font-bold;
+  color: $title-color;
+
+  @include media("<mob") {
+    margin-bottom: $bottom-space--mob;
+  }
+}
+
+h1, .h1 {
+  font-weight: normal;
+
+  @include font-h1;
+}
+
+h2, .h2 {
+  @include font-h2;
+}
+
+h3, .h3 {
+  @include font-h3;
+}
+
+h4, .h4 {
+  @include font-size($font-size-h4, $line-height-h4);
+}
+
+h5, .h5 {
+  @include font-size($font-size-h5, $line-height-h5);
+}
+
+h6, .h6 {
+  @include font-size($font-size-h6, $line-height-h6);
+
+  text-transform: uppercase;
+}
+
+p {
+  padding: 0;
+  margin: 0 0 $bottom-space;
+
+  @include media("<mob") {
+    margin-bottom: $bottom-space--mob;
+  }
+}
+
+hr {
+  line-height: 1px;
+  height: 0;
+  border: none;
+  background: none;
+  border-bottom: 1px solid $border-color;
+  margin-bottom: $bottom-space;
+
+  @include media("<mob") {
+    margin-bottom: $bottom-space--mob;
+  }
+}
+
+a {
+  color: $link-color;
+  text-decoration: underline;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+
+  &:link {
+    cursor: pointer;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &[href^="javascript:"] {
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+img {
+  border: none;
+  vertical-align: top;
+  max-width: 100%;
+
+  //table & {
+  //  max-width: none;
+  //}
+}

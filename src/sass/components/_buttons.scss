@@ -1,0 +1,168 @@
+@import "../utils/variables";
+@import "../utils/mixins";
+@import "../../libs/include-media/dist/include-media";
+
+/* btn-def */
+.btn-def {
+  $this: &;
+  //$btn-height: $btn-height;
+  $btn-font-size: 1.8rem;
+  $btn-line-height: 2.1rem;
+  $btn-border-width: 0;
+  $btn-space-inner-vertical: round-float(($btn-height - $btn-line-height - $btn-border-width * 2) / 2, 1);
+  $btn-space-inner-horizontal: 3.2rem;
+  // ------------- mob ---------------
+  $btn-font-size--mob: 1.8rem;
+  $btn-line-height--mob: 2.1rem;
+  $btn-border-width--mob: 0;
+  $btn-space-inner-vertical--mob: round-float(($btn-height--mob - $btn-line-height--mob - $btn-border-width--mob * 2) / 2, 1);
+  $btn-space-inner-horizontal--mob: 3.2rem;
+
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: #{$btn-space-inner-vertical} #{$btn-space-inner-horizontal};
+  font-size: $btn-font-size;
+  line-height: $btn-line-height;
+  color: $btn-text-color;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.8rem;
+  background: none;
+  box-shadow: 0 4px 10px rgba(110, 86, 176, 0.25);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 1;
+
+  @include media("<mob") {
+    padding: #{$btn-space-inner-vertical--mob} #{$btn-space-inner-horizontal--mob};
+    font-size: $btn-font-size--mob;
+    line-height: $btn-line-height--mob;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    z-index: -1;
+    transition: opacity $animation-speed;
+  }
+
+  &::before {
+    //@include linear-gradient(180deg, #7e3fbb 0%, #a02f8d 100%);
+    background-color: $btn-bg-hover-color;
+  }
+
+  &::after {
+    @include linear-gradient(180deg, #6e56b0 0%, #5a4690 100%);
+  }
+
+  // Hover
+  &:hover {
+    &::after {
+      opacity: 0;
+    }
+  }
+
+  // Disabled
+  &:disabled, &.disabled {
+    @include btn-disabled;
+  }
+
+  @at-root {
+    input#{$this} {
+      @include linear-gradient(180deg, #6e56b0 0%, #5a4690 100%);
+      border-radius: 0.8rem;
+
+      // Hover
+      .no-touchevents &:hover {
+        background: $btn-bg-hover-color;
+      }
+    }
+  }
+}
+
+/* btn-def end */
+
+/* btn-alt */
+.btn-alt {
+  $this: &;
+  //$btn-height: $btn-height;
+  $btn-font-size: 1.8rem;
+  $btn-line-height: 2.1rem;
+  $btn-border-width: 0;
+  $btn-space-inner-vertical: round-float(($btn-height - $btn-line-height - $btn-border-width * 2) / 2, 1);
+  $btn-space-inner-horizontal: 3.2rem;
+  $btn-bg-color: #7a839e;
+  // ------------- mob ---------------
+  $btn-font-size--mob: 1.8rem;
+  $btn-line-height--mob: 2.1rem;
+  $btn-border-width--mob: 0;
+  $btn-space-inner-vertical--mob: round-float(($btn-height--mob - $btn-line-height--mob - $btn-border-width--mob * 2) / 2, 1);
+  $btn-space-inner-horizontal--mob: 3.2rem;
+
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  margin: 0;
+  padding: #{$btn-space-inner-vertical} #{$btn-space-inner-horizontal};
+  font-size: $btn-font-size;
+  line-height: $btn-line-height;
+  color: $btn-text-color;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.8rem;
+  background: $btn-bg-color;
+  box-shadow: 0 4px 10px rgba(110, 86, 176, 0.25);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color $animation-speed;
+
+  @include media("<mob") {
+    padding: #{$btn-space-inner-vertical--mob} #{$btn-space-inner-horizontal--mob};
+    font-size: $btn-font-size--mob;
+    line-height: $btn-line-height--mob;
+  }
+
+  // Hover
+  .no-touchevents &:hover {
+    background: $btn-bg-hover-color;
+  }
+
+  // Disabled
+  &:disabled, &.disabled {
+    @include btn-disabled;
+  }
+
+  @at-root {
+    input#{$this} {
+      border-radius: 0.8rem;
+    }
+  }
+}
+
+/* btn-alt end */
+
+/* btn with icon */
+.btn-def,
+.btn-alt {
+  [class*="icon-"] {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 1.2rem;
+    height: 2.1rem;
+  }
+}
+/* btn with icon end */

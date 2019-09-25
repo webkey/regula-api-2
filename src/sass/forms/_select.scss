@@ -1,0 +1,164 @@
+@import "../utils/variables";
+@import "../utils/mixins";
+@import "../../libs/include-media/dist/include-media";
+
+// Select
+select {
+  .#{$article-content} &,
+  .select & {
+    display: block;
+    width: 100%;
+  }
+}
+
+.#{$article-content},
+.select,
+.#{$article-content} .select {
+  select {
+    @include select-selection;
+
+    @include selects-font;
+
+    display: block;
+    position: relative;
+    overflow: hidden;
+    text-overflow: "";
+    cursor: pointer;
+    white-space: nowrap;
+
+    @include media($form-media--mob) {
+      @include select-selection--mob;
+
+      @include selects-font--mob;
+    }
+  }
+}
+
+.#{$article-content} select {
+  padding-right: 0;
+}
+
+.#{$article-content} select, .select {
+  @include forms-space;
+
+  @include media($form-media--mob) {
+    @include forms-space--mob;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Select with a custom arrow
+.select {
+  position: relative;
+
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    right: 22px;
+    top: 50%;
+
+    @include size(8px, 2px);
+
+    background-color: $text-color;
+    margin-top: -1px;
+    z-index: 1;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+    right: 17px;
+  }
+
+  select {
+    padding-right: 40px;
+  }
+}
+
+// States
+.#{$article-content} select, .select {
+  &[disabled] {
+    cursor: default;
+    color: $form-text-color--disabled;
+    background-color: $form-bg-color--disabled;
+    border-color: $form-border-color--disabled;
+
+    @include placeholder {
+      color: $form-text-color--disabled;
+    }
+  }
+
+  &:not([disabled]):not(.error):not(.success):not(.filled) {
+    //form hover
+    &:hover {
+      border-color: $form-border-color--focus;
+    }
+
+    //form focus
+    &:focus {
+      border-color: $form-border-color--focus;
+    }
+  }
+
+  // has value (js)
+  &.filled:not([disabled]) {
+    @include filled;
+  }
+
+  // on focus (js)
+  &.focused {
+    @include focused;
+  }
+
+  //form success
+  &.success:not([disabled]) {
+    @include form-success;
+
+    //form success placeholder
+    @include placeholder {
+      color: $form-success-color;
+    }
+  }
+
+  //form error
+  &.error:not([disabled]) {
+    @include form-error;
+
+    //form error placeholder
+    @include placeholder {
+      color: $form-error-color;
+    }
+  }
+}
+
+// Select has custom arrow
+select.has-arrow {
+  appearance: none;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  & + .select-arrow {
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: $form-input-height;
+    width: $select-arrow-width;
+    margin-top: calc(-#{$form-bottom-space} - #{$form-input-height});
+
+    @include font-size(0, 0);
+
+    @include media("<mob") {
+      margin-top: calc(-#{$form-bottom-space--mob} - #{$form-input-height});
+    }
+  }
+}

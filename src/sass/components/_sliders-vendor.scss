@@ -1,0 +1,57 @@
+@import "../utils/variables";
+@import "../utils/mixins";
+@import "../../libs/include-media/dist/include-media";
+
+/* swiper slider */
+
+// slider pagination
+// =================
+
+$swp-size: 0.6rem 0.6rem;
+$swp-space: 0.6rem 0.3rem 0;
+//--------------------------
+
+.swiper-pagination {
+  pointer-events: none;
+  line-height: 0;
+}
+
+.swiper-pagination-bullet {
+
+  display: inline-block;
+  vertical-align: top;
+  height: nth($swp-size, 1);
+  width: nth($swp-size, 1);
+  border-radius: round-float(nth($swp-size, 1) / 2, 1);
+  border: none;
+  margin: $swp-space;
+  opacity: 1;
+  pointer-events: auto;
+  background: #fff;
+  outline: none;
+
+  // transition
+  transition: background-color $animation-speed;
+
+  // hover
+  &:not(.swiper-pagination-bullet-active):hover {
+    background-color: $highlight-color--hover;
+  }
+
+  &.swiper-pagination-bullet-active {
+    cursor: default;
+    background-color: #000;
+  }
+}
+
+.swiper-container-horizontal {
+  & > .swiper-pagination-bullets {
+    bottom: 0;
+
+    .swiper-pagination-bullet {
+      margin: $swp-space;
+    }
+  }
+}
+
+/* swiper slider end */

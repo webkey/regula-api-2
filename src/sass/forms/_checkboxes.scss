@@ -1,0 +1,230 @@
+@import "../utils/variables";
+@import "../utils/mixins";
+@import "../../libs/include-media/dist/include-media";
+
+// Checkbox and Radiobutton
+$checkbox-size: 2.4rem;
+$checkbox-check-size: 0.6rem 1rem;
+$radio-check-size: 1.6rem;
+$checkbox-color: #d8d8d8;
+
+.form-radiocheck {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 0;
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+  color: $text-color;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  a {
+    color: currentColor;
+    text-decoration: none;
+    box-shadow: inset 0 -1px 0 currentColor;
+    transition: box-shadow $animation-speed;
+
+    &:hover {
+      box-shadow: inset 0 -1px 0 transparent  ;
+    }
+  }
+
+  // hide default inputs
+  input[type="checkbox"],
+  input[type="radio"] {
+    position: absolute;
+    @include size(16px);
+    padding: 0;
+    margin: 0;
+    display: none;
+
+    &:disabled {
+      color: #bdbdbd !important;
+
+      & + span {
+        cursor: default !important;
+        color: #d6d6d6 !important;
+
+        &::before,
+        &::after {
+          border-color: currentColor !important;
+        }
+
+        &::before {
+          background-color: #f3f3f3 !important;
+        }
+      }
+    }
+  }
+
+  & > span {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    padding-left: $checkbox-size + 1;
+    cursor: pointer;
+
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      box-sizing: border-box;
+
+      $prop: opacity, border-color;
+
+      will-change: $prop;
+      transition: border-color ease-in-out 0.2s;
+    }
+
+    &::before {
+      left: 0;
+      top: -1px;
+      border: 1px solid $checkbox-color;
+      width: $checkbox-size;
+      height: $checkbox-size;
+      //margin: -#{round-float($checkbox-size / 2, 1)} 0;
+      transition: border-color $animation-speed, background-color $animation-speed;
+    }
+
+    &::after {
+      $prop: transform, opacity;
+
+      will-change: $prop;
+      transition: transform cubic-bezier(0.45, -1.1, 0.45, 2.1) 0.22s, opacity ease-in-out 0.2s;
+    }
+  }
+}
+
+.form-radiocheck {
+  input[type="checkbox"] {
+    & ~ span {
+      &::before {
+        border-radius: $checkbox-size;
+      }
+
+      &::after {
+        opacity: 0;
+        left: 0;
+        //top: 50%;
+        top: -1px;
+        height: nth($checkbox-check-size, 1);
+        width: nth($checkbox-check-size, 2);
+        margin: 0.8rem #{round-float(($checkbox-size - nth($checkbox-check-size, 2)) / 2, 1)};
+        //margin: 0 #{round-float(($checkbox-size - nth($checkbox-check-size, 2)) / 2, 1)};
+        border: solid $bg-color {
+          width: 0 0 2px 2px;
+        };
+
+        $rotate: -30deg;
+        $scale: 1.1, 1.1;
+
+        transform: rotate($rotate) scale($scale);
+        transform: rotate($rotate) scale3d($scale, 1);
+      }
+    }
+  }
+
+  // hover
+  &:hover {
+    input[type="checkbox"] {
+      & ~ span {
+        &::before {
+          border-color: $highlight-color--hover;
+        }
+      }
+    }
+  }
+
+  // checked
+  input[type="checkbox"] {
+    &:checked {
+      & ~ span {
+        &::before {
+          background-color: $highlight-color;
+          border-color: $highlight-color;
+        }
+
+        &::after {
+          opacity: 1;
+
+          $rotate: -45deg;
+          $scale: 1, 1;
+
+          transform: rotate($rotate) scale($scale);
+          transform: rotate($rotate) scale3d($scale, 1);
+        }
+      }
+    }
+  }
+
+  // checked hover
+  &:hover {
+    input[type="checkbox"] {
+      &:checked {
+        & ~ span {
+          &::before {
+            border-color: $highlight-color--hover;
+            background-color: $highlight-color--hover;
+          }
+        }
+      }
+    }
+  }
+}
+
+.form-radiocheck {
+  input[type="radio"] {
+    & ~ span {
+      &::before {
+        border-radius: $checkbox-size;
+      }
+
+      &::after {
+        opacity: 0;
+        left: 0;
+        //top: 50%;
+        top: -0.2rem;
+        height: $radio-check-size;
+        width: $radio-check-size;
+        //margin: -#{round-float($radio-check-size / 2, 1)} #{round-float(($checkbox-size - $radio-check-size) / 2, 1)};
+        margin: #{round-float(($checkbox-size - $radio-check-size) / 2, 1)};
+        border: round-float($radio-check-size / 2, 1) solid $highlight-color;
+        border-radius: round-float($radio-check-size / 2, 1);
+
+        $scale: 1.35, 1.35;
+
+        transform: scale($scale);
+        transform: scale3d($scale, 1);
+      }
+    }
+  }
+
+  // hover
+  &:hover {
+    input[type="radio"] {
+      & ~ span {
+        &::before {
+          border-color: $highlight-color--hover;
+        }
+      }
+    }
+  }
+
+  // checked
+  input[type="radio"] {
+    &:checked {
+      & ~ span {
+        &::after {
+          opacity: 1;
+
+          $rotate: 0;
+          $scale: 1, 1;
+
+          transform: scale($scale);
+          transform: scale3d($scale, 1);
+        }
+      }
+    }
+  }
+}

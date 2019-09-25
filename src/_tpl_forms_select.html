@@ -1,0 +1,20 @@
+<label for="@@id">@@label <mark>*</mark></label>
+<select
+    class="form-def@@if(context.arrow){ has-arrow} field-js"
+    id="@@id"
+    name="@@id"
+    @@if(context.disabled){ disabled}
+    required
+>
+  <!--Important! The first element must have a value of ""-->
+  <option value="">- Choose option -</option>
+  <option value="1"@@if(context.selected == "1"){ selected}>Option 1</option>
+  <option value="2"@@if(context.selected == "2"){ selected}>Option 2</option>
+  <option value="3"@@if(context.selected == "3"){ selected}>Option 3 we have to add a lot of text for testing to make sure the correctness of cutting this text</option>
+  <option value="4"@@if(context.selected == "4"){ selected}>Option 4</option>
+  <option value="5"@@if(context.selected == "5"){ selected}>Option 5</option>
+  <option value="6"@@if(context.selected == "6"){ selected}>Option 6</option>
+  <option value="7"@@if(context.selected == "7"){ selected}>Option 7</option>
+  <option value="8"@@if(context.selected == "8"){ selected}>Option 8</option>
+</select>
+@@if(context.arrow){<div class="select-arrow">@@include("includes/svg/icon-angle.svg")</div>}

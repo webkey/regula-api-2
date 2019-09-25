@@ -1,0 +1,217 @@
+@import "../utils/variables";
+@import "../utils/mixins";
+@import "../../libs/include-media/dist/include-media";
+
+/* form elements */
+label {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 0.3em;
+  padding: 0 2.5rem;
+  font-size: 1.4rem;
+  line-height: 1.7rem;
+  letter-spacing: 0.02em;
+  color: $text-color;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent !important;
+
+  @include media($form-media--mob) {
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+  }
+
+  mark {
+    background: none;
+    color: $error-color;
+  }
+}
+
+// .form-def:
+// input[type="text"]
+// input[type="password"]
+// input[type="email"]
+// input[type="search"]
+// textarea
+
+.form-def,
+.form-def_alt {
+  display: block;
+  width: 100%;
+  height: $form-input-height;
+  padding: $form-input-space-vt $form-input-space-h $form-input-space-vb;
+  background-color: $form-bg-color;
+  box-shadow: none;
+  border: $form-border-width solid $form-border-color;
+  border-radius: 0;
+  cursor: pointer;
+  transition: border-color $animation-speed, color $animation-speed;
+
+  // Стили для текста
+  @include inputs-font;
+
+  // Вертикальные внешние отступы
+  @include forms-space;
+
+  // Для мобильных
+  @include media($form-media--mob) {
+    height: $form-input-height--mob;
+    padding: $form-input-space-vt--mob $form-input-space-h--mob $form-input-space-vb--mob;
+    border-width: $form-border-width--mob;
+
+    @include inputs-font--mob;
+    @include forms-space--mob;
+  }
+
+  // Textarea
+  @at-root {
+    textarea {
+      &.form-def, &.form-def_alt {
+        $lines: 5;
+        $height: round($form-line-height * $lines) + $form-input-space-vt + $form-input-space-vb + round($form-border-width * 2);
+
+        min-height: $height;
+        height: $height;
+        resize: vertical;
+
+        @include media($form-media--mob) {
+          $lines: 3;
+          $height: round($form-line-height--mob * $lines) + $form-input-space-vt--mob + $form-input-space-vb--mob + round($form-border-width--mob * 2);
+
+          min-height: $height;
+          height: $height;
+        }
+      }
+    }
+  }
+
+  // Последний элемент в списке
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  // Placeholder
+  @include placeholder {
+    color: $form-placeholder-color;
+    transition: $animation-speed opacity;
+  }
+
+
+  // Placeholder hide on focus
+  @include placeholder-focus {
+    opacity: 0;
+  }
+
+  // Focus
+  &:focus {
+    cursor: text;
+    border-color: $form-border-color--focus;
+  }
+
+  // Hover
+  &:hover {
+    border-color: $form-border-color--focus;
+  }
+
+  // Focus (js classes)
+  //&.focused {
+  //  @include focused;
+  //}
+
+  // Has value (js classes)
+  // Label
+  //@at-root label {
+  //  &.filled {
+  //    @include filled;
+  //  }
+  //}
+
+  //&.filled {
+  //  @include filled;
+  //}
+
+  // Success
+  //@at-root label {
+  //  &.success {
+  //    @include form-success;
+  //  }
+  //}
+
+  //&.success {
+  //  @include form-success;
+  //
+  //  // Placeholder
+  //  @include placeholder {
+  //    color: $form-success-color;
+  //  }
+  //}
+
+  // Error
+  //@at-root label {
+  //  &.error {
+  //    @include form-error;
+  //  }
+  //}
+
+  &.error {
+    @include form-error;
+
+    // Placeholder
+    @include placeholder {
+      color: $form-error-color;
+    }
+  }
+
+  // Disabled
+  &[disabled] {
+    cursor: default !important;
+    color: $form-text-color--disabled !important;
+    background-color: $form-bg-color--disabled !important;
+    border-color: $form-border-color--disabled !important;
+    box-shadow: none !important;
+
+    @include placeholder {
+      color: $form-text-color--disabled !important;
+    }
+  }
+}
+
+// Alternative fields
+.label_alt {
+  color: #fff;
+}
+
+.form-def_alt {
+  border-color: rgba(#fff, 0.2);
+  background-color: #3e4159;
+  color: #fff;
+
+  @include placeholder {
+    color: rgba(#3e4159, 0.3);
+  }
+
+  &:focus, &:hover {
+    border-color: rgba(#fff, 0.5);
+  }
+
+  //&.error {
+  //  color: $base-color-alt;
+  //  border-color: rgba($base-color-alt, 0.3);
+  //
+  //  @include placeholder {
+  //    color: rgba($base-color-alt, 0.3);
+  //  }
+  //}
+  //
+  //& ~ .error-feedback {
+  //  color: $base-color-alt;
+  //}
+}
+
+@import "unit";
+@import "group";
+@import "checkboxes";
+@import "switcher";
+@import "select";
+@import "validation";
+
+/* form elements end */

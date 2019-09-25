@@ -1,0 +1,36 @@
+@import "../utils/variables";
+@import "../utils/mixins";
+@import "../../libs/include-media/dist/include-media";
+
+// Form unit
+.form-unit {
+  position: relative;
+  margin-bottom: $form-bottom-space;
+  line-height: 1;
+
+  @include media($form-media--mob) {
+    margin-bottom: $form-bottom-space--mob;
+  }
+
+  .form-def, .form-def_alt, .form-radiocheck, .form-switcher, .select2 {
+    margin-bottom: 0;
+  }
+
+  .error-feedback,
+  .success-feedback {
+    margin-top: 0;
+    margin-bottom: -#{$validate-feedback-height};
+  }
+
+  select.has-arrow {
+    & + .select-arrow {
+      margin-top: -#{$form-input-height};
+
+      @include font-size(0, 0);
+
+      @include media("<mob") {
+        margin-top: -#{$form-input-height};
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@import "../utils/variables";
+@import "../utils/mixins";
+@import "../../libs/include-media/dist/include-media";
+
+// Form group elements
+$form-group-cols: 2;
+$form-group-gap: 4rem;
+$form-group-gap-half: round-float($form-group-gap / 2, 1);
+
+.form-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin: 0 -#{$form-group-gap-half} $form-bottom-space;
+
+  @include media("<mob") {
+    display: block;
+  }
+
+  @include media($form-media--mob) {
+    display: block;
+    margin-bottom: $form-bottom-space--mob;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.form-group__item {
+  position: relative;
+
+  $width: calc(100% / #{$form-group-cols} - #{$form-group-gap});
+
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: $width;
+  max-width: $width;
+  margin: 0 #{$form-group-gap-half};
+
+  @include media("<mob") {
+    display: block;
+    width: auto;
+    max-width: none;
+    margin-bottom: $form-bottom-space;
+  }
+
+
+  .form-def, .form-def_dark, .form-radiocheck, .form-switcher, .select2 {
+    margin-bottom: 0;
+  }
+
+  .error-feedback,
+  .success-feedback {
+    margin-top: 0;
+    margin-bottom: -#{$validate-feedback-height};
+  }
+}

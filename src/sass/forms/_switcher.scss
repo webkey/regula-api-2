@@ -1,0 +1,232 @@
+@import "../utils/variables";
+@import "../utils/mixins";
+@import "../../libs/include-media/dist/include-media";
+
+/* Form switcher */
+$checkbox-size: 2.8rem 4.6rem;
+$checkbox-inside: 0.2rem 0.2rem;
+$checkbox-border-width: 0.1rem;
+//----------- mob -------------
+$checkbox-size--mob: 2.4rem 3.8rem;
+$checkbox-inside--mob: 0.1rem 0.1rem;
+$checkbox-border-width--mob: 0.1rem;
+
+// ===
+$checkbox-border-color: rgba(#000, 0.2);
+$checkbox-bg-color: $bg-color;
+$checkbox-border-color-active: $base-color;
+$checkbox-bg-color-active: $base-color;
+
+// ===
+$checkbox-check-size: 2.4rem 2.4rem;
+$checkbox-check-color: #fff;
+$checkbox-check-color-active: #fff;
+//----------- mob -------------
+$checkbox-check-size--mob: 2.0rem 2.0rem;
+
+.form-switcher {
+  display: inline-block;
+  vertical-align: baseline;
+  margin-bottom: 0;
+  padding: 0;
+  font-size: 2.0rem;
+  line-height: 2.4rem;
+  color: $text-color;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+
+  @include media("<tab") {
+    font-size: 1.8rem;
+  }
+
+  @include media("<mob") {
+    font-size: 2.0rem;
+  }
+
+  // hide default inputs
+  input[type="checkbox"] {
+    position: absolute;
+
+    @include size(16px);
+
+    padding: 0;
+    margin: 0;
+    display: none;
+  }
+
+  & > span {
+    position: relative;
+    display: inline-block;
+    vertical-align: baseline;
+    //padding: 0 0 0 #{nth($checkbox-size, 2) + 1.5};
+    padding: 0 #{nth($checkbox-size, 2) + 1.5} 0 0;
+    cursor: pointer;
+
+    @include media("<mob") {
+      padding: 0 #{nth($checkbox-size--mob, 2) + 1.5} 0 0;
+    }
+
+    &::before, &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      box-sizing: border-box;
+
+      $prop: background-color, color, border-color, transform;
+      will-change: $prop;
+      transition: {
+        property: $prop;
+        duration: 0.15s;
+        timing-function: ease-in-out;
+      };
+    }
+
+    &::before {
+      //left: 0;
+      right: 0;
+      height: nth($checkbox-size, 1);
+      width: nth($checkbox-size, 2);
+      margin-top: -#{round-float(nth($checkbox-size, 1) / 2, 1)};
+      background-color: $checkbox-bg-color;
+      border: $checkbox-border-width solid $checkbox-border-color;
+      border-radius: nth($checkbox-size, 1);
+
+      @include media("<mob") {
+        height: nth($checkbox-size--mob, 1);
+        width: nth($checkbox-size--mob, 2);
+        margin-top: -#{round-float(nth($checkbox-size--mob, 1) / 2, 1)};
+        border-width: $checkbox-border-width--mob;
+        border-radius: nth($checkbox-size--mob, 1);
+      }
+    }
+
+    &::after {
+      //left: $checkbox-border-width + nth($checkbox-inside, 2);
+      right: $checkbox-border-width + nth($checkbox-inside, 2);
+      height: nth($checkbox-check-size, 1);
+      width: nth($checkbox-check-size, 2);
+      margin-top: -#{round-float(nth($checkbox-check-size, 1) / 2, 1)};
+      background-color: $checkbox-check-color;
+      border-radius: nth($checkbox-check-size, 1);
+      box-shadow: 0 3px 8px rgba(#000, 0.3);
+
+      $space: nth($checkbox-size, 2) - $checkbox-border-width * 2 - nth($checkbox-inside, 2) * 2 - nth($checkbox-check-size, 2);
+      $translate: -#{$space}, 0;
+      $scale: 1, 1;
+
+      transform: translate($translate) scale($scale);
+      transform: translate3d($translate, 0) scale3d($scale, 1);
+
+      @include media("<mob") {
+        right: $checkbox-border-width--mob + nth($checkbox-inside--mob, 2);
+        height: nth($checkbox-check-size--mob, 1);
+        width: nth($checkbox-check-size--mob, 2);
+        margin-top: -#{round-float(nth($checkbox-check-size--mob, 1) / 2, 1)};
+        background-color: $checkbox-check-color;
+        border-radius: nth($checkbox-check-size--mob, 1);
+
+        $space--mob: nth($checkbox-size--mob, 2) - $checkbox-border-width--mob * 2 - nth($checkbox-inside--mob, 2) * 2 - nth($checkbox-check-size--mob, 2);
+        $translate--mob: -#{$space--mob}, 0;
+        $scale--mob: 1, 1;
+
+        transform: translate($translate--mob) scale($scale--mob);
+        transform: translate3d($translate--mob, 0) scale3d($scale--mob, 1);
+      }
+    }
+  }
+
+  // hover
+  .no-touchevents &:hover {
+    input[type="checkbox"] {
+      & ~ span {
+        //color: $highlight-color--hover;
+
+        &::before {
+          border-color: $highlight-color--hover;
+          background-color: rgba($highlight-color--hover, 0.2);
+        }
+
+        //&::after {
+        //  background-color: $highlight-color--hover;
+        //}
+      }
+    }
+  }
+
+  // focus
+  //&:focus
+  // input[type="checkbox"]
+  //   & ~ span
+  //     &::before
+  //       box-shadow: 0 0 0 0.3rem rgba($focus-color, 0.25)
+
+  // checked
+  input[type="checkbox"] {
+    &:checked {
+      & ~ span {
+        @include font-bold;
+
+        &::before {
+          background-color: $checkbox-bg-color-active;
+          border-color: $checkbox-border-color-active;
+        }
+
+        &::after {
+          background-color: $checkbox-check-color-active;
+
+          $translate: 0, 0;
+          $scale: 1, 1;
+
+          transform: translate($translate) scale($scale);
+          transform: translate3d($translate, 0) scale3d($scale, 1);
+        }
+      }
+
+      .no-touchevents &:hover {
+        & ~ span {
+          &::before {
+            background-color: $highlight-color--hover;
+            border-color: $highlight-color--hover;
+          }
+        }
+      }
+    }
+  }
+
+  // disabled
+  input[type="checkbox"] {
+    &:disabled {
+      cursor: default !important;
+
+      & ~ span {
+        color: lighten($text-color, 40%) !important;
+        cursor: default !important;
+
+        &::before {
+          border-color: lighten($text-color, 50%) !important;
+          background: none !important;
+        }
+
+        &::after {
+          background-color: lighten($text-color, 50%) !important;
+          box-shadow: none !important;
+        }
+      }
+
+      &:checked {
+        & ~ span {
+          &::before {
+            border-color: lighten($text-color, 50%) !important;
+            background-color: lighten($text-color, 50%) !important;
+          }
+
+          &::after {
+            background-color: white !important;
+          }
+        }
+      }
+    }
+  }
+}
+/* Form switcher end */

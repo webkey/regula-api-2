@@ -1,0 +1,483 @@
+@import "functions";
+@import "placeholders";
+
+// ==========================================================================
+// Variables
+// ==========================================================================
+
+// medium query
+// medium query
+$breakpoints: (
+    "desk-l": 2560px,
+    "desk": 1920px,
+    "desk-s": 1600px,
+    "lap-l": 1440px,
+    "lap": 1366px,
+    "lap-s": 1280px,
+    "net": 1200px,
+    "tab": 992px,
+    "tab-s": 768px,
+    "mob": 640px,
+    "mob-s": 480px,
+    "mob-xs": 375px,
+    "mob-xxs": 360px
+);
+
+
+// Fonts style
+// ==========================================================================
+$font-norm: 'Lato', sans-serif !default;
+$font-alt: Georgia, serif !default;
+
+// Main font
+@mixin font-normal {
+  font-family: $font-norm;
+}
+
+@mixin font-black {
+  font-weight: 900;
+}
+
+@mixin font-bold {
+  font-weight: 700;
+}
+
+@mixin font-italic {
+  font-style: italic;
+}
+
+@mixin font-bold-italic {
+  font-weight: 700;
+  font-style: italic;
+}
+
+// Alternative font
+@mixin font-alt {
+  font-family: $font-alt;
+}
+
+@mixin font-alt-bold {
+  font-family: $font-alt;
+  font-weight: bold;
+}
+
+@mixin font-alt-bold-italic {
+  font-family: $font-alt;
+  font-weight: bold;
+  font-style: italic;
+}
+
+// Base
+// ==========================================================================
+
+$font-size: 1.6rem !default;
+$line-height: 2.6rem !default;
+$letter-spacing: normal !default;
+
+// ----------------------------------------------------
+$font-size--mob: 1.4rem !default;
+$line-height--mob: 1.8rem !default;
+
+// Heading h1
+$font-size-h1: 4.2rem !default;
+$line-height-h1: 5.2rem !default;
+$line-height-h1-kef: $line-height-h1 / $font-size-h1;
+
+// ----------------------------------------------------
+$font-size-h1--tab: 3.4rem !default;
+$line-height-h1--tab: round-float($font-size-h1--tab * $line-height-h1-kef, 1) !default; // Использовать рассчетное значение, если нет в дизайне
+
+// ----------------------------------------------------
+$font-size-h1--mob: 3.0rem !default;
+$line-height-h1--mob: round-float($font-size-h1--mob * $line-height-h1-kef, 1) !default; // Использовать рассчетное значение, если нет в дизайне
+
+// ----------------------------------------------------
+@mixin font-h1() {
+  font-size: $font-size-h1;
+  line-height: $line-height-h1;
+
+  @include media("<tab") {
+    font-size: $font-size-h1--tab;
+    line-height: $line-height-h1--tab;
+  }
+
+  @include media("<mob") {
+    font-size: $font-size-h1--mob;
+    line-height: $line-height-h1--mob;
+  }
+}
+
+// Heading h2
+$font-size-h2: 3.0rem !default;
+$line-height-h2: 4.2rem !default;
+$line-height-h2-kef: $line-height-h2 / $font-size-h2;
+
+// ----------------------------------------------------
+$font-size-h2--tab: 2.8rem !default;
+$line-height-h2--tab: round-float($font-size-h2--tab * $line-height-h2-kef, 1) !default; // Использовать рассчетное значение, если нет в дизайне
+
+// ----------------------------------------------------
+$font-size-h2--mob: 2.4rem !default;
+$line-height-h2--mob: round-float($font-size-h2--mob * $line-height-h2-kef, 1) !default; // Использовать рассчетное значение, если нет в дизайне
+
+// ----------------------------------------------------
+@mixin font-h2() {
+  font-size: $font-size-h2;
+  line-height: $line-height-h2;
+
+  @include media("<tab") {
+    font-size: $font-size-h2--tab;
+    line-height: $line-height-h2--tab;
+  }
+
+  @include media("<mob") {
+    font-size: $font-size-h2--mob;
+    line-height: $line-height-h2--mob;
+    letter-spacing: 0.01em;
+  }
+}
+
+// Heading h3
+$font-size-h3: 2.4rem !default;
+$line-height-h3: 3.0rem !default;
+$line-height-h3-kef: $line-height-h3 / $font-size-h3;
+
+// ----------------------------------------------------
+$font-size-h3--tab: 2.2rem !default;
+$line-height-h3--tab: round-float($font-size-h3--tab * $line-height-h3-kef, 1) !default; // Использовать рассчетное значение, если нет в дизайне
+
+// ----------------------------------------------------
+$font-size-h3--mob: 1.8rem !default;
+$line-height-h3--mob: round-float($font-size-h3--mob * $line-height-h3-kef, 1) !default; // Использовать рассчетное значение, если нет в дизайне
+
+// ----------------------------------------------------
+@mixin font-h3() {
+  font-size: $font-size-h3;
+  line-height: $line-height-h3;
+
+  @include media("<tab") {
+    font-size: $font-size-h3--tab;
+    line-height: $line-height-h3--tab;
+  }
+
+  @include media("<mob") {
+    font-size: $font-size-h3--mob;
+    line-height: $line-height-h3--mob;
+    letter-spacing: 0.02em;
+  }
+}
+
+// Heading h4
+$font-size-h4: $font-size !default;
+$line-height-h4: $line-height !default;
+
+// ----------------------------------------------------
+$font-size-h4--mob: $font-size--mob !default;
+$line-height-h4--mob: $line-height--mob !default;
+
+@mixin font-h4() {
+  font-size: $font-size-h4;
+  line-height: $line-height-h4;
+
+  @include media("<mob") {
+    font-size: $font-size-h4--mob;
+    line-height: $line-height-h4--mob;
+  }
+}
+
+// Heading h5
+$font-size-h5: $font-size !default;
+$line-height-h5: $line-height !default;
+
+// Heading h6
+$font-size-h6: $font-size !default;
+$line-height-h6: $line-height !default;
+
+// Spaces
+$bottom-space: $line-height !default;
+$bottom-space--mob: $line-height--mob !default;
+$bottom-section: round-float($line-height * 1.5, 1) !default;
+$bottom-section--mob: round-float($line-height--mob * 1.5, 1) !default;
+
+
+// Colors
+// ==========================================================================
+
+// ----------------------------------------------------
+$base-color: #6e56b0 !default;
+$base-color-alt: invert($base-color) !default;
+
+// ----------------------------------------------------
+$highlight-color: #6e56b0 !default
+$highlight-color--hover: #6c667c !default
+
+// ----------------------------------------------------
+$bg-color: #e3edf7 !default;
+$bg-color-alt: #fff !default;
+$bg-color-accent: #1f2343 !default;
+$bg-color-results: #f5f6fa !default;
+
+// ----------------------------------------------------
+$text-color: #1c1e1f !default;
+$text-color-muted: #7a839e !default;
+$text-color-light: #ccc !default;
+
+// ----------------------------------------------------
+$title-color: #000 !default;
+
+// ----------------------------------------------------
+$link-color: #6e56b0 !default;
+$focus-color: #0080ff !default;
+
+// ----------------------------------------------------
+$border-color: lightgray !default;
+
+// ----------------------------------------------------
+$mark-color: #ff2b51 !default;
+
+// ----------------------------------------------------
+$success-color: #0fd3a4 !default;
+$error-color: #FF2B51 !default;
+$info-color: #17a2b8 !default;
+$warning-color: #ffc107 !default;
+$light-color: #f8f9fa !default;
+$dark-color: #343a40 !default;
+
+
+// Classes for article page / article content / typography
+// ==========================================================================
+// @example Sass - Использование
+// .#{$article-content}
+//
+// @example css - Вывод CSS
+// .article-content
+$article-content: article-content !default;
+$typography-style-class: typography !default;
+
+
+// Layout
+// ==========================================================================
+
+// Минимальная ширина сайта
+$layout-page-min-width: 32rem !default;
+// Максимальная ширина сайта
+//$layout-page-max-width: 115.2rem !default; // Full width
+$layout-page-max-width: 106rem !default;
+// Отступы для всего сайта
+$layout-page-space: 6rem 4.8rem !default;
+$layout-page-space--tab: 4rem 3rem !default;
+$layout-page-space--mob: 3rem 2rem !default;
+
+// ---------------------------------------
+$layout-popup-width: 105.6rem !default;
+
+// ---------------------------------------
+// Максимальная ширина текстового блока
+$layout-text-width: 80rem !default;
+// Отступы у текствого блока
+$layout-text-space: 2rem 3rem !default;
+
+// ---------------------------------------
+// Максимальная ширина элементов выходящих за пределы текста
+$layout-flood-width: 110rem !default;
+
+// ---------------------------------------
+// Внутренние отступы
+$grid-space: 2.8rem 3rem !default;
+
+// ---------------------------------------
+// Внутренние отступы в таблице результатов
+$table-space: 1.1rem 1.2em 1.2rem 1.9rem;
+
+
+// Header
+// ==========================================================================
+$header-height: 6rem !default;
+$header-height--mob: 4.8rem !default;
+
+
+// Footer
+// ==========================================================================
+
+
+// Buttons
+// ==========================================================================
+$btn-height:  5.5rem !default;
+$btn-height--mob:  4.5rem !default;
+$btn-bg-color-start:  #6e56b0 !default;
+$btn-bg-color-end:  #5a4690 !default;
+$btn-bg-hover-color: #6c667c !default;
+$btn-text-color: #fff !default;
+$btn-disabled-color: #ccc !default;
+
+@mixin btn-disabled() {
+  cursor: default !important;
+  color: white !important;
+  border-color: $btn-disabled-color !important;
+  background: $btn-disabled-color !important;
+  box-shadow: none !important;
+  pointer-events: none;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+}
+
+
+// Forms
+// ==========================================================================
+
+// Media Query for Forms
+$form-media--mob: "<mob";
+
+// Colors of forms
+$form-text-color: $text-color !default;
+$form-placeholder-color: lighten($form-text-color, 65%) !default;
+$form-bg-color: #fff !default;
+$form-border-color: #e0e0e0 !default;
+// validation
+$form-error-color: $error-color !default;
+$form-success-color: $success-color !default;
+// disabled
+$form-text-color--disabled: #ced4da !default;
+$form-bg-color--disabled: #e9ecef !default;
+$form-border-color--disabled: #ced4da !default;
+// focus
+$form-border-color--focus: darken($form-border-color, 20%) !default;
+
+// Fonts of forms
+$form-font-size: 16px !default;
+$form-line-height: 24px !default;
+$form-input-height: 50px !default;
+$form-letter-spacing: null !default;
+//----------------------------------
+$form-font-size--mob: 14px !default
+$form-line-height--mob: 21px !default
+$form-input-height--mob: 45px !default
+$form-letter-spacing--mob: null !default
+
+// @example Sass - Использование
+// @example css - Вывод CSS
+@mixin inputs-font {
+  font-family: inherit;
+
+  font-size: $form-font-size;
+  line-height: $form-line-height;
+
+  @if $form-letter-spacing {
+    letter-spacing: $form-letter-spacing;
+  }
+  color: $form-text-color;
+}
+
+@mixin inputs-font--mob {
+  font-size: $form-font-size--mob;
+  line-height: $form-line-height--mob;
+
+  @if $form-letter-spacing--mob {
+    letter-spacing: $form-letter-spacing--mob;
+  }
+}
+
+@mixin selects-font {
+  @include inputs-font;
+}
+
+@mixin selects-font--mob {
+  @include inputs-font--mob;
+}
+
+// Layout of forms
+$form-border-width: 1px !default;
+$form-input-space-vt: floor(($form-input-height - $form-line-height - $form-border-width*2)/2) !default; // верхний паддинг округляем в нижнюю сторону
+$form-input-space-vb: ceil(($form-input-height - $form-line-height - $form-border-width*2)/2) !default; // нижний паддинг округляем в верхнюю сторону
+$form-input-space-h: 24px !default;
+$form-bottom-space: 2.8rem !default;
+//---------------------------------
+$form-border-width--mob: 1px !default
+$form-input-space-vt--mob: floor(($form-input-height--mob - $form-line-height--mob - $form-border-width--mob * 2) / 2) !default // верхний паддинг округляем в нижнюю сторону
+$form-input-space-vb--mob: ceil(($form-input-height--mob - $form-line-height--mob - $form-border-width--mob * 2) / 2) !default // нижний паддинг округляем в верхнюю сторону
+$form-input-space-h--mob: 18px !default
+$form-bottom-space--mob: 2.5rem !default
+$form-gap--mob: 2rem !default
+
+// Vertical spaces
+@mixin forms-space {
+  margin: 0 0 $form-bottom-space;
+}
+
+@mixin forms-space--mob {
+  margin: 0 0 $form-bottom-space--mob;
+}
+
+// Checkboxes
+// Radio Buttons
+$checkbox-color: #ff3aa3 !default;
+
+// Select
+$select-space-v: 12px !default;
+$multiple-item-space: 3px !default;
+
+// Select custom arrow
+$select-arrow-width: 40px !default;
+$select-arrow-height: $form-input-height !default;
+//---------------------------------
+$select-arrow-width--mob: 40px !default
+$select-arrow-height--mob: 40px !default
+$select-space-h--mob: 18px !default
+
+// Style Selection
+@mixin select-selection() {
+  height: $form-input-height;
+  width: 100%;
+  padding: $form-input-space-vt $select-arrow-width $form-input-space-vb $form-input-space-h;
+  background: $form-bg-color;
+  border: #{$form-border-width} solid #{$form-border-color};
+  border-radius: 0;
+  box-shadow: none;
+  text-indent: 0;
+  outline: none;
+}
+
+@mixin select-selection--mob {
+  height: $form-input-height--mob;
+  padding: $form-input-space-vt--mob ($select-arrow-width--mob + 15) $form-input-space-vb--mob $select-space-h--mob;
+
+  @if $form-border-width--mob {
+    border-width: $form-border-width--mob;
+  }
+}
+
+
+// States
+@mixin form-success {
+  color: $form-success-color;
+  border-color: $form-success-color;
+}
+
+@mixin form-error {
+  color: $form-error-color;
+  border-color: $form-error-color;
+}
+
+@mixin filled {
+  color: blueviolet;
+  border-color: blueviolet;
+}
+
+@mixin focused {
+  //color: $form-border-focus-color
+  border-color: $form-border-color--focus;
+}
+
+
+// Form validate feedback
+// ==========================================================================
+$validate-feedback-font-size: 1.2rem;
+$validate-feedback-line-height: 1.6rem;
+$validate-feedback-height: 2.2rem;
+
+// Animation
+// ==========================================================================
+$animation-speed: 0.35s !default;

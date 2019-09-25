@@ -1,0 +1,818 @@
+@@include("_tpl_layout_head.html", {
+  "title": "Home",
+  "pageClass": ""
+})
+
+@@include("_tpl_layout_header.html", { "currentItem": "Главная" })
+
+<!--MAIN-->
+<main class="main" role="main">
+  <div class="entry layout-page-spaces hide-after-result">
+    <div class="entry__content">
+      <h1>Regula Document Reader SDK Web Api</h1>
+      <p>Fast and accurate data extraction from identity documents<br> On-premise and cloud integration.</p>
+    </div>
+  </div>
+
+  <div class="doc-lad layout-page layout-page-spaces">
+    <div class="d-container">
+      <div class="d-prev">
+        <div class="d-controls controls hide-after-result">
+          <h3 class="d-controls__title">Use your own image</h3>
+          <div class="d-controls__title_alt">Here you can check our service by taking a picture of your document, browsing one or using our sample</div>
+          <div class="d-controls__content">
+            <div class="controls__row_lg">
+              <a href="#" class="controls__btn btn-def popup-rules-open-js"><i class="icon-photo"></i><span>Take a picture</span></a>
+            </div>
+            <div class="controls__group">
+              <div class="controls__row">
+                <span class="controls__upload popup-rules-open-js">
+                  <span class="btn-def">Upload</span>
+                  <em>or drag and drop</em>
+                  <input type="file" name="browse">
+                </span>
+                <div class="dropzone">
+                  <div class="dropzone__icon"></div>
+                  <div class="dropzone__title">Drop files here</div>
+                </div>
+              </div>
+              <div class="controls__row">
+                <form action="#" method="post" class="form-url form-validate-js">
+                  <input class="form-url__field form-def" placeholder="Use image URL" name="url" type="text" required>
+                  <span class="form-url__error-feedback">Error</span>
+                  <button class="form-url__submit btn-def">Go</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-orig-images">
+          <h3 class="d-orig-images__title">Original image</h3>
+          <div class="u-files">
+            <div class="u-files__list">
+              <div class="u-files__item">
+                @@include("_tpl_u-file.html", {
+                "imgSrc": "img/temp/img_640_01.jpg"
+                })
+              </div>
+              <div class="u-files__item">
+                @@include("_tpl_u-file.html", {
+                "imgSrc": "img/temp/img_640_02.jpg"
+                })
+              </div>
+              <div class="u-files__item">
+                @@include("_tpl_u-file.html", {
+                "imgSrc": "img/temp/img_320_01.jpg"
+                })
+              </div>
+              <div class="u-files__item">
+                @@include("_tpl_u-file.html", {
+                "imgSrc": "img/scan-orig-01.jpg"
+                })
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-get-doc hide-after-result">
+          <div class="d-sample-doc">
+            <h3 class="d-sample-doc__title">Choose a sample image</h3>
+            <div class="swiper-container sample-doc sample-doc-slider-js" id="sample-doc">
+              <div class="swiper-wrapper">
+                <a href="#" class="swiper-slide sample-doc__item active" style="background-image:url(img/scan-orig-01.jpg);" data-frames="img/scan-frames.png"></a>
+                <a href="#" class="swiper-slide sample-doc__item" style="background-image:url(img/scan-orig-03.jpg);"></a>
+
+                <a href="#" class="swiper-slide sample-doc__item" style="background-image:url(img/temp/img_640_01.jpg);"></a>
+                <a href="#" class="swiper-slide sample-doc__item" style="background-image:url(img/temp/img_640_02.jpg);"></a>
+                <a href="#" class="swiper-slide sample-doc__item" style="background-image:url(img/temp/img_320_01.jpg);"></a>
+
+                <a href="#" class="swiper-slide sample-doc__item" style="background-image:url(img/scan-orig-02.jpg);"></a>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-settings settings settings-js">
+          <h3 class="settings__label">Select parameters</h3>
+          <div class="settings__group">
+            <div class="settings__item settings__item_head">
+              <label class="form-switcher">
+                <input type="checkbox" name="all-parameters" class="all-param-js" checked>
+                <span>All parameters</span>
+              </label>
+            </div>
+            <hr>
+            <div class="settings__item">
+              <label class="form-switcher">
+                <input type="checkbox" name="do-mrz">
+                <span>Do MRZ</span>
+              </label>
+            </div>
+            <div class="settings__item">
+              <label class="form-switcher">
+                <input type="checkbox" name="do-visual-text">
+                <span>Do Visual Text</span>
+              </label>
+            </div>
+            <div class="settings__item">
+              <label class="form-switcher">
+                <input type="checkbox" name="do-graphic-fields">
+                <span>Do Graphic Fields</span>
+              </label>
+            </div>
+            <div class="settings__item">
+              <label class="form-switcher">
+                <input type="checkbox" name="do-barcodes">
+                <span>Do Barcodes</span>
+              </label>
+            </div>
+            <div class="settings__item">
+              <label class="form-switcher">
+                <input type="checkbox" name="do-compress-images">
+                <span>Do Compress Images</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-details">
+        <div class="tabs tabs-js">
+          <div class="tabs-thumbs">
+            <a href="#result" class="tabs-thumb-js current">Result</a>
+            <a href="#request" class="tabs-thumb-js">Request</a>
+            <a href="#response" class="tabs-thumb-js">Response</a>
+          </div>
+
+          <div class="tabs-panels tabs-panels-js">
+            <div class="tabs-panel current" id="result">
+              <div class="sensor">
+                <div class="sensor__list">
+                  <div class="sensor__item">Upload: <strong>0.300s</strong></div>
+                  <div class="sensor__item">Processing: <strong>1.74s</strong></div>
+                  <div class="sensor__item">Parsing result: <strong>0.6s</strong></div>
+                </div>
+              </div>
+
+              <div class="table-container">
+                <table class="table m-simple m-simple_scan">
+                  <tbody>
+                    <tr>
+                      <td class="td-label"></td>
+                      <td>
+                        <div class="m-simple-images same-photos">
+                          <div class="orig-images orig-images-js">
+                            <div class="orig-images__figure">
+                              <img id="orig-image" src="img/scan-orig-01.jpg" alt="image description" />
+                              <div class="scan-frames">
+                                <img id="scan-frames" src="img/scan-frames.png" alt="image description" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="orig-images orig-images-js">
+                            <div class="orig-images__figure">
+                              <img src="img/scan-orig-01.jpg" alt="image description" />
+                              <div class="scan-frames">
+                                <img src="img/scan-frames.png" alt="image description" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table class="table m-simple m-simple_title">
+                  <tbody>
+                    <tr>
+                      <td class="td-label">Document type</td>
+                      <td><h2>Australia - ePassport (2009) Travel Document</h2></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table class="table m-simple">
+                  <tbody>
+                    <tr>
+                      <td class="td-label">Portrait</td>
+                      <td><img src="img/scan-02-photo.jpg" alt="Portrait"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label">Signature</td>
+                      <td><img src="img/scan-02-sign.jpg" alt="Signature"></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <table class="table m-sticky-head js-data-table">
+                  <thead>
+                    <tr>
+                      <th>Field type</th>
+                      <th class="th-mrz"><span>MRZ</span></th>
+                      <th class="th-barcode"><span>Barcode</span></th>
+                      <th class="th-visual"><span>Visual zone</span></th>
+                      <th><span>Title name 1</span></th>
+                      <th style="opacity: 0"><span>Title name 2</span></th>
+                      <th><span>Title name 3</span></th>
+                      <th><span>Title name 4</span></th>
+                      <th class="td-valid">
+                        <span>Valid</span>
+                        <!--<span class="badge">3</span>-->
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="td-label"><div>Document Class Code</div></td>
+                      <td><div class="u-wrap">I897794789</div></td>
+                      <td></td>
+                      <td></td>
+                      <td><div class="u-wrap">I897794789</div></td>
+                      <td style="opacity: 0"><div class="u-wrap"></div></td>
+                      <td><div class="u-wrap"><em class="icon-warning"></em></div></td>
+                      <td><div class="u-wrap"><em class="icon-confirm"></em></div></td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Issuing State Code</div></td>
+                      <td>LVA</td>
+                      <td></td>
+                      <td></td>
+                      <td>LVA</td>
+                      <td style="opacity: 0"></td>
+                      <td>LVA</td>
+                      <td>LVA</td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Document №</div></td>
+                      <td class="confirm"><div class="u-wrap">PA9992592</div></td>
+                      <td><div class="u-wrap">PA9992592</div></td>
+                      <td></td>
+                      <td><div class="u-wrap">PA9992592</div></td>
+                      <td style="opacity: 0"><div class="u-wrap"></div></td>
+                      <td><div class="u-wrap">PA9992592</div></td>
+                      <td><div class="u-wrap">PA9992592</div></td>
+                      <td class="td-valid confirm"></td>
+                    </tr>
+                    <tr class="row-marked">
+                      <td class="td-label"><div>Date of expire</div></td>
+                      <td><div class="u-wrap">3/4/2017</div></td>
+                      <td><div class="u-wrap"></div></td>
+                      <td></td>
+                      <td><div class="u-wrap">3/4/2017</div></td>
+                      <td style="opacity: 0"><div class="u-wrap"></div></td>
+                      <td><div class="u-wrap">3/4/2017</div></td>
+                      <td><div class="u-wrap">3/4/2017</div></td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Date of issue</div></td>
+                      <td></td>
+                      <td></td>
+                      <td><div class="u-wrap">7.71.511</div></td>
+                      <td><div class="u-wrap">7.71.511</div></td>
+                      <td style="opacity: 0"><div class="u-wrap"></div></td>
+                      <td><div class="u-wrap">7.71.511</div></td>
+                      <td><div class="u-wrap">7.71.511</div></td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Date of birth</div></td>
+                      <td><div class="u-wrap">12/12/1982</div></td>
+                      <td></td>
+                      <td></td>
+                      <td><div class="u-wrap">12/12/1982</div></td>
+                      <td style="opacity: 0"><div class="u-wrap"></div></td>
+                      <td><div class="u-wrap">12/12/1982</div></td>
+                      <td><div class="u-wrap">12/12/1982</div></td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Personal №</div></td>
+                      <td><div class="u-wrap">12128288882</div></td>
+                      <td></td>
+                      <td></td>
+                      <td><div class="u-wrap">12128288882</div></td>
+                      <td style="opacity: 0"><div class="u-wrap"></div></td>
+                      <td><div class="u-wrap">12128288882</div></td>
+                      <td><div class="u-wrap">12128288882</div></td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Surname</div></td>
+                      <td><div class="u-wrap">PARAUDZINS</div></td>
+                      <td></td>
+                      <td></td>
+                      <td><div class="u-wrap">PARAUDZINS</div></td>
+                      <td style="opacity: 0"><div class="u-wrap"></div></td>
+                      <td><div class="u-wrap">PARAUDZINS</div></td>
+                      <td><div class="u-wrap">PARAUDZINS</div></td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Given names</div></td>
+                      <td>ANDRIS</td>
+                      <td></td>
+                      <td></td>
+                      <td>ANDRIS</td>
+                      <td style="opacity: 0"></td>
+                      <td>ANDRIS</td>
+                      <td>ANDRIS</td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Nationality</div></td>
+                      <td>Latvia</td>
+                      <td></td>
+                      <td></td>
+                      <td>Latvia</td>
+                      <td style="opacity: 0"></td>
+                      <td>Latvia</td>
+                      <td>Latvia</td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Sex (1062)</div></td>
+                      <td></td>
+                      <td></td>
+                      <td>V</td>
+                      <td>V</td>
+                      <td style="opacity: 0"></td>
+                      <td>V</td>
+                      <td>V</td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Sex</div></td>
+                      <td></td>
+                      <td>M</td>
+                      <td></td>
+                      <td>M</td>
+                      <td style="opacity: 0"></td>
+                      <td>M</td>
+                      <td>M</td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr class="row-marked">
+                      <td class="td-label"><div>Height</div></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td style="opacity: 0"></td>
+                      <td></td>
+                      <td></td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Issuing Authority (1062)</div></td>
+                      <td><div class="u-wrap">PMLP RĪGAS 1.NODAĻA</div></td>
+                      <td></td>
+                      <td><div class="u-wrap">PMLP RĪGAS 1.NODAĻA</div></td>
+                      <td><div class="u-wrap">PMLP RĪGAS 1.NODAĻA</div></td>
+                      <td style="opacity: 0"><div class="u-wrap"></div></td>
+                      <td><div class="u-wrap">PMLP RĪGAS 1.NODAĻA</div></td>
+                      <td><div class="u-wrap">PMLP RĪGAS 1.NODAĻA</div></td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Surname And Given Names</div></td>
+                      <td><div class="u-wrap">PARAUDZINS ANDRIS</div></td>
+                      <td></td>
+                      <td></td>
+                      <td><div class="u-wrap">PARAUDZINS ANDRIS</div></td>
+                      <td style="opacity: 0"><div class="u-wrap"></div></td>
+                      <td><div class="u-wrap">PARAUDZINS ANDRIS</div></td>
+                      <td><div class="u-wrap">PARAUDZINS ANDRIS</div></td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Nationality Code</div></td>
+                      <td>LVA</td>
+                      <td></td>
+                      <td></td>
+                      <td>LVA</td>
+                      <td style="opacity: 0"></td>
+                      <td>LVA</td>
+                      <td>LVA</td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Optional data</div></td>
+                      <td><div class="u-wrap">12128288882</div></td>
+                      <td></td>
+                      <td></td>
+                      <td><div class="u-wrap">12128288882</div></td>
+                      <td style="opacity: 0"><div class="u-wrap"></div></td>
+                      <td><div class="u-wrap">12128288882</div></td>
+                      <td><div class="u-wrap">12128288882</div></td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Issuing State</div></td>
+                      <td>Latvia</td>
+                      <td></td>
+                      <td></td>
+                      <td>Latvia</td>
+                      <td style="opacity: 0"></td>
+                      <td>Latvia</td>
+                      <td>Latvia</td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>MRZ Lines</div></td>
+                      <td><div class="u-wrap">I&lt;LVAPA99925920121282&lt;88882&lt;&lt;&lt;8212122M1703043LVA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8PARAUDZINS&lt;&lt;ANDRIS&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div></td>
+                      <td></td>
+                      <td></td>
+                      <td><div class="u-wrap">I&lt;LVAPA99925920121282&lt;88882&lt;&lt;&lt;8212122M1703043LVA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8PARAUDZINS&lt;&lt;ANDRIS&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div></td>
+                      <td style="opacity: 0"><div class="u-wrap"></div></td>
+                      <td><div class="u-wrap">I&lt;LVAPA99925920121282&lt;88882&lt;&lt;&lt;8212122M1703043LVA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8PARAUDZINS&lt;&lt;ANDRIS&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div></td>
+                      <td><div class="u-wrap">I&lt;LVAPA99925920121282&lt;88882&lt;&lt;&lt;8212122M1703043LVA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8PARAUDZINS&lt;&lt;ANDRIS&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div></td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Check digit of document number</div></td>
+                      <td>0</td>
+                      <td></td>
+                      <td></td>
+                      <td>0</td>
+                      <td style="opacity: 0"></td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Check digit of birth date</div></td>
+                      <td>2</td>
+                      <td></td>
+                      <td></td>
+                      <td>2</td>
+                      <td style="opacity: 0"></td>
+                      <td>2</td>
+                      <td>2</td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Check digit of expiry date</div></td>
+                      <td>3</td>
+                      <td></td>
+                      <td></td>
+                      <td>3</td>
+                      <td style="opacity: 0"></td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Final check digit</div></td>
+                      <td>8</td>
+                      <td></td>
+                      <td></td>
+                      <td>8</td>
+                      <td style="opacity: 0"></td>
+                      <td>8</td>
+                      <td>8</td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>MRZ strings with correct checksums</div></td>
+                      <td><div class="u-wrap">I&lt;LVAPA99925920121282&lt;88882&lt;&lt;&lt;8212122M1703043LVA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8PARAUDZINS&lt;&lt;ANDRIS&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div></td>
+                      <td></td>
+                      <td></td>
+                      <td><div class="u-wrap">I&lt;LVAPA99925920121282&lt;88882&lt;&lt;&lt;8212122M1703043LVA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8PARAUDZINS&lt;&lt;ANDRIS&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div></td>
+                      <td style="opacity: 0"><div class="u-wrap"></div></td>
+                      <td><div class="u-wrap">I&lt;LVAPA99925920121282&lt;88882&lt;&lt;&lt;8212122M1703043LVA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8PARAUDZINS&lt;&lt;ANDRIS&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div></td>
+                      <td><div class="u-wrap">I&lt;LVAPA99925920121282&lt;88882&lt;&lt;&lt;8212122M1703043LVA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;8PARAUDZINS&lt;&lt;ANDRIS&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div></td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr>
+                      <td class="td-label"><div>Age</div></td>
+                      <td>36</td>
+                      <td></td>
+                      <td></td>
+                      <td>36</td>
+                      <td style="opacity: 0"></td>
+                      <td>36</td>
+                      <td>36</td>
+                      <td class="td-valid"></td>
+                    </tr>
+                    <tr class="row-marked">
+                      <td class="td-label"><div>Months to expire</div></td>
+                      <td>0</td>
+                      <td></td>
+                      <td></td>
+                      <td>0</td>
+                      <td style="opacity: 0"></td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td class="td-valid"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="preloader"><div class="spin"><span></span></div></div>
+            </div>
+
+            <div class="tabs-panel" id="request">
+              <div class="tabs-panel__space">
+                <div class="tabs-panel__title">Embed code:</div>
+                <pre class="s-code"><code>[
+  {
+    "year" : 2013,
+    "title" : "Turn It Down, Or Else!",
+    "info" : {
+      "directors" : [ "Alice Smith", "Bob Jones"],
+      "release_date" : "2013-01-18T00:00:00Z",
+      "rating" : 6.2,
+      "genres" : ["Comedy", "Drama"],
+      "image_url" : "http://ia.media-imdb.com/images/N/O9ERWAU7FS797AJ7LU8HN09AMUP908RLlo5JF90EWR7LJKQ7@@._V1_SX400_.jpg",
+      "plot" : "A rock band plays their music at high volumes, annoying the neighbors.",
+      "actors" : ["David Matthewman", "Jonathan G. Neff"]
+    }
+  },
+  {
+    "year": 2015,
+    "title": "The Big New Movie",
+    "info": {
+      "plot": "Nothing happens at all.",
+      "rating": 0
+    }
+  },
+  {
+    "year" : 2013,
+    "title" : "Turn It Down, Or Else!",
+    "info" : {
+      "directors" : [ "Alice Smith", "Bob Jones"],
+      "release_date" : "2013-01-18T00:00:00Z",
+      "rating" : 6.2,
+      "genres" : ["Comedy", "Drama"],
+      "image_url" : "http://ia.media-imdb.com/images/N/O9ERWAU7FS797AJ7LU8HN09AMUP908RLlo5JF90EWR7LJKQ7@@._V1_SX400_.jpg",
+      "plot" : "A rock band plays their music at high volumes, annoying the neighbors.",
+      "actors" : ["David Matthewman", "Jonathan G. Neff"]
+    }
+  },
+  {
+    "year": 2015,
+    "title": "The Big New Movie",
+    "info": {
+      "plot": "Nothing happens at all.",
+      "rating": 0
+    }
+  },
+  {
+    "year" : 2013,
+    "title" : "Turn It Down, Or Else!",
+    "info" : {
+      "directors" : [ "Alice Smith", "Bob Jones"],
+      "release_date" : "2013-01-18T00:00:00Z",
+      "rating" : 6.2,
+      "genres" : ["Comedy", "Drama"],
+      "image_url" : "http://ia.media-imdb.com/images/N/O9ERWAU7FS797AJ7LU8HN09AMUP908RLlo5JF90EWR7LJKQ7@@._V1_SX400_.jpg",
+      "plot" : "A rock band plays their music at high volumes, annoying the neighbors.",
+      "actors" : ["David Matthewman", "Jonathan G. Neff"]
+    }
+  },
+  {
+    "year": 2015,
+    "title": "The Big New Movie",
+    "info": {
+      "plot": "Nothing happens at all.",
+      "rating": 0
+    }
+  },
+  {
+    "year" : 2013,
+    "title" : "Turn It Down, Or Else!",
+    "info" : {
+      "directors" : [ "Alice Smith", "Bob Jones"],
+      "release_date" : "2013-01-18T00:00:00Z",
+      "rating" : 6.2,
+      "genres" : ["Comedy", "Drama"],
+      "image_url" : "http://ia.media-imdb.com/images/N/O9ERWAU7FS797AJ7LU8HN09AMUP908RLlo5JF90EWR7LJKQ7@@._V1_SX400_.jpg",
+      "plot" : "A rock band plays their music at high volumes, annoying the neighbors.",
+      "actors" : ["David Matthewman", "Jonathan G. Neff"]
+    }
+  },
+  {
+    "year": 2015,
+    "title": "The Big New Movie",
+    "info": {
+      "plot": "Nothing happens at all.",
+      "rating": 0
+    }
+  }
+]</code></pre>
+              </div>
+
+              <div class="preloader"><div class="spin"><span></span></div></div>
+            </div>
+
+            <div class="tabs-panel" id="response">
+              <div class="tabs-panel__space">
+                <div class="tabs-panel__title">Embed code:</div>
+                <pre class="s-code"><code>[
+  {
+    "year" : 2014,
+    "title" : "Turn It Down, Or Else!",
+    "info" : {
+      "directors" : [ "Alice Smith", "Bob Jones"],
+      "release_date" : "2013-01-18T00:00:00Z",
+      "rating" : 6.2,
+      "genres" : ["Comedy", "Drama"],
+      "image_url" : "http://ia.media-imdb.com/images/N/O9ERWAU7FS797AJ7LU8HN09AMUP908RLlo5JF90EWR7LJKQ7@@._V1_SX400_.jpg",
+      "plot" : "A rock band plays their music at high volumes, annoying the neighbors.",
+      "actors" : ["David Matthewman", "Jonathan G. Neff"]
+    }
+  },
+  {
+    "year": 2015,
+    "title": "The Big New Movie",
+    "info": {
+      "plot": "Nothing happens at all.",
+      "rating": 0
+    }
+  },
+  {
+    "year" : 2013,
+    "title" : "Turn It Down, Or Else!",
+    "info" : {
+      "directors" : [ "Alice Smith", "Bob Jones"],
+      "release_date" : "2013-01-18T00:00:00Z",
+      "rating" : 6.2,
+      "genres" : ["Comedy", "Drama"],
+      "image_url" : "http://ia.media-imdb.com/images/N/O9ERWAU7FS797AJ7LU8HN09AMUP908RLlo5JF90EWR7LJKQ7@@._V1_SX400_.jpg",
+      "plot" : "A rock band plays their music at high volumes, annoying the neighbors.",
+      "actors" : ["David Matthewman", "Jonathan G. Neff"]
+    }
+  },
+  {
+    "year": 2015,
+    "title": "The Big New Movie",
+    "info": {
+      "plot": "Nothing happens at all.",
+      "rating": 0
+    }
+  },
+  {
+    "year" : 2013,
+    "title" : "Turn It Down, Or Else!",
+    "info" : {
+      "directors" : [ "Alice Smith", "Bob Jones"],
+      "release_date" : "2013-01-18T00:00:00Z",
+      "rating" : 6.2,
+      "genres" : ["Comedy", "Drama"],
+      "image_url" : "http://ia.media-imdb.com/images/N/O9ERWAU7FS797AJ7LU8HN09AMUP908RLlo5JF90EWR7LJKQ7@@._V1_SX400_.jpg",
+      "plot" : "A rock band plays their music at high volumes, annoying the neighbors.",
+      "actors" : ["David Matthewman", "Jonathan G. Neff"]
+    }
+  },
+  {
+    "year": 2015,
+    "title": "The Big New Movie",
+    "info": {
+      "plot": "Nothing happens at all.",
+      "rating": 0
+    }
+  },
+  {
+    "year" : 2013,
+    "title" : "Turn It Down, Or Else!",
+    "info" : {
+      "directors" : [ "Alice Smith", "Bob Jones"],
+      "release_date" : "2013-01-18T00:00:00Z",
+      "rating" : 6.2,
+      "genres" : ["Comedy", "Drama"],
+      "image_url" : "http://ia.media-imdb.com/images/N/O9ERWAU7FS797AJ7LU8HN09AMUP908RLlo5JF90EWR7LJKQ7@@._V1_SX400_.jpg",
+      "plot" : "A rock band plays their music at high volumes, annoying the neighbors.",
+      "actors" : ["David Matthewman", "Jonathan G. Neff"]
+    }
+  },
+  {
+    "year": 2015,
+    "title": "The Big New Movie",
+    "info": {
+      "plot": "Nothing happens at all.",
+      "rating": 0
+    }
+  },
+  {
+    "year" : 2013,
+    "title" : "Turn It Down, Or Else!",
+    "info" : {
+      "directors" : [ "Alice Smith", "Bob Jones"],
+      "release_date" : "2013-01-18T00:00:00Z",
+      "rating" : 6.2,
+      "genres" : ["Comedy", "Drama"],
+      "image_url" : "http://ia.media-imdb.com/images/N/O9ERWAU7FS797AJ7LU8HN09AMUP908RLlo5JF90EWR7LJKQ7@@._V1_SX400_.jpg",
+      "plot" : "A rock band plays their music at high volumes, annoying the neighbors.",
+      "actors" : ["David Matthewman", "Jonathan G. Neff"]
+    }
+  },
+  {
+    "year": 2015,
+    "title": "The Big New Movie",
+    "info": {
+      "plot": "Nothing happens at all.",
+      "rating": 0
+    }
+  }
+]</code></pre>
+              </div>
+
+              <div class="preloader"><div class="spin"><span></span></div></div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <!--Footer copy-->
+      <div class="footer">
+        <div class="layout-page layout-page-spaces">
+          <div class="copyright">© 1992-2019 Regula. All rights reserved.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content layout-page layout-page-spaces">
+    <div class="follow-mob hide-after-result">
+      <span class="follow-mob__label">Applicable to mobile or web apps</span>
+      <a href="#" class="follow-mob__btn btn-def">Follow mobile SDK page</a>
+    </div>
+
+    <div class="suggest hide-after-result">
+      <div class="suggest__list">
+        <div class="suggest__item">
+          <i class="suggest__icon icon-integration"></i>
+          <h3 class="suggest__title">Integration</h3>
+          <p>Integrate Regula SDK Web and process identity documents on your website. Our technology becomes a part of your own backend.</p>
+        </div>
+        <div class="suggest__item">
+          <i class="suggest__icon icon-security"></i>
+          <h3 class="suggest__title">Security</h3>
+          <p>We don't store customer data. Images are sent to customer’s server for processing. All important data stays in your system.</p>
+        </div>
+        <div class="suggest__item">
+          <i class="suggest__icon icon-license"></i>
+          <h3 class="suggest__title">Trial license</h3>
+          <p>To experience all the capacities of Regula SDK you can get our trial license for free.To get a trial licence please contact our sales managers.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="volume hide-after-result">
+      <div class="volume__label">We read and verify over<br> <a href="#" class="popup-dist-open-js">7,200</a> document types in <a href="#" class="popup-dist-open-js">77</a> languages</div>
+      <a href="#" class="volume__btn btn-def popup-contacts-open-js">Contact sales</a>
+    </div>
+
+    <div class="advantages hide-after-result">
+      <div class="advantages__list">
+        <div class="advantages__item">
+          <div class="advantage">
+            <h3 class="advantage__title">Integrate Regula SDK into your own application</h3>
+            <p>Customize your solution to fit your own unique case of document verification</p>
+          </div>
+        </div>
+        <div class="advantages__item">
+          <div class="advantage">
+            <h3 class="advantage__title">Allow passengers and guests to check in</h3>
+            <p>by simply scanning their passports or ID cards with no need to manually enter personal data</p>
+          </div>
+        </div>
+        <div class="advantages__item">
+          <div class="advantage">
+            <h3 class="advantage__title">Reduce the risk of identity fraud</h3>
+            <p>Know your customer — read and validate any government-issued document of the world to verify the identity of your clients</p>
+          </div>
+        </div>
+        <div class="advantages__item">
+          <div class="advantage">
+            <h3 class="advantage__title">Verify ID document authenticity</h3>
+            <p>Read personal data from eDocuments (including RFID chip data) and check document authenticity in seconds</p>
+          </div>
+        </div>
+        <div class="advantages__item">
+          <div class="advantage">
+            <h3 class="advantage__title">Automate manual processes</h3>
+            <p>Сreate fast and effortless checkout experiences accepting payments by scanning a customer's credit card</p>
+          </div>
+        </div>
+        <div class="advantages__item advantages__item_has-btn">
+          <a href="https://regulaforensics.com" class="btn-alt advantages__btn" target="_blank">www.regulaforensics.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<!--MAIN end-->
+
+@@include("_tpl_layout_footer.html")
+
+@@include("_tpl_layout_foot.html")
